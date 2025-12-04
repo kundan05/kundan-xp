@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kundan xp",
+  title: "Kundan XP",
   description: "Developed by Kundan",
 };
 

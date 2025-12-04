@@ -43,7 +43,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                 onConfirm={handleConfirmLink}
                 onCancel={() => setDialogOpen(false)}
             />
-            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none">
+            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none">
                 {/* Header */}
                 <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative overflow-hidden">
                     {/* Header Highlight */}
