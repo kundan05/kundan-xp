@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-xp-blue: #0052A3;
+  --color-xp-green: #3B9D00;
+  --color-xp-taskbar: #245BDB;
+  --color-xp-window-bg: #ECE9D8;
+  --color-xp-title-start: #0058EE;
+  --color-xp-title-end: #3593FF;
+
+  --font-tahoma: Tahoma, "Segoe UI", Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --background: #0052A3;
+  /* Default XP background color if image fails */
+  --foreground: #000000;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-tahoma);
+  overflow: hidden;
+  /* Desktop shouldn't scroll */
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes xp-loading {
+  from {
+    left: -80px;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+.animate-xp-loading {
+  animation: xp-loading 2s linear infinite;
+}
+
+/* Windows XP Scrollbar */
+::-webkit-scrollbar {
+  width: 17px;
+  height: 17px;
+  background-color: #ECE9D8;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ECE9D8;
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H1V1H2V2H1V1H0V0Z' fill='%23F4F4F4' fill-opacity='0.5'/%3E%3C/svg%3E");
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #C2D5F2;
+  border: 1px solid #fff;
+  border-right-color: #9EB6CE;
+  border-bottom-color: #9EB6CE;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #9EB6CE;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #DCE7F5;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #9EB6CE;
+  border: 1px solid #9EB6CE;
+}
+
+::-webkit-scrollbar-button {
+  width: 17px;
+  height: 17px;
+  background-color: #ECE9D8;
+  border: 1px solid #fff;
+  border-right-color: #787878;
+  border-bottom-color: #787878;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #787878;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::-webkit-scrollbar-button:active {
+  border: 1px solid #787878;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  box-shadow: inset 1px 1px 0 #787878, inset -1px -1px 0 #fff;
+  background-position: center 1px;
+}
+
+/* Up Arrow */
+::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg width='7' height='4' viewBox='0 0 7 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 0L7 4H0L3.5 0Z' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Down Arrow */
+::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("data:image/svg+xml,%3Csvg width='7' height='4' viewBox='0 0 7 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 4L0 0H7L3.5 4Z' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Left Arrow */
+::-webkit-scrollbar-button:horizontal:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='7' viewBox='0 0 4 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 3.5L4 7V0L0 3.5Z' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Right Arrow */
+::-webkit-scrollbar-button:horizontal:increment {
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='7' viewBox='0 0 4 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 3.5L0 0V7L4 3.5Z' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Corner */
+::-webkit-scrollbar-corner {
+  background-color: #ECE9D8;
+}
