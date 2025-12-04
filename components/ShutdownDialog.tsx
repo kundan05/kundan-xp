@@ -20,7 +20,7 @@ export default function ShutdownDialog({ onCancel, onRestart, onShutdown }: Shut
                 <div className="h-[42px] flex items-center justify-between px-3 bg-gradient-to-r from-[#003399] via-[#003399] to-[#003399]">
                     <span className="text-white text-lg font-medium drop-shadow-md">Turn off Kundan XP</span>
                     <div className="relative w-6 h-6 opacity-80">
-                        <Image src="/icons/xp-logo-user-provided.png" alt="Windows" fill className="object-contain" />
+                        <Image src="/icons/xp-logo-final.png" alt="Windows" fill className="object-contain" />
                     </div>
                 </div>
 

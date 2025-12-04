@@ -103,7 +103,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
                     <button className="px-1.5 py-0.5 text-[#808080] cursor-default">Help</button>
                 </div>
                 <div className="pr-1 opacity-50">
-                    <Image src="/icons/xp-logo-user-provided.png" alt="" width={16} height={16} />
+                    <Image src="/icons/xp-logo-final.png" alt="" width={16} height={16} />
                 </div>
             </div>
 

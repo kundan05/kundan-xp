@@ -9,7 +9,7 @@ export default function LoadingScreen() {
                 {/* Logo Section */}
                 <div className="flex flex-col items-end">
                     <div className="relative w-60 h-30 mb-1 mr-4">
-                        <Image src="/icons/xp-logo-user-provided.png" alt="XP Logo" fill className="object-contain" />
+                        <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" />
                     </div>
                     <div className="flex flex-col items-center">
                         <h1 className="text-white text-[94px] font-bold tracking-tighter drop-shadow-md flex items-start justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>

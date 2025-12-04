@@ -78,7 +78,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                     <span className="hover:bg-[#1660E8] hover:text-white px-1 cursor-default text-gray-400">Help</span>
                 </div>
                 <div className="ml-auto">
-                    <Image src="/icons/xp-logo-user-provided.png" alt="Windows" width={18} height={18} className="opacity-80" />
+                    <Image src="/icons/xp-logo-final.png" alt="Windows" width={18} height={18} className="opacity-80" />
                 </div>
             </div>
 

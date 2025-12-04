@@ -46,7 +46,7 @@ export default function Taskbar({
                 <span className="drop-shadow-md flex items-center gap-1">
                     <div className="relative w-5 h-5 mr-1">
                         <Image
-                            src="/icons/xp-logo-user-provided.png"
+                            src="/icons/xp-logo-final.png"
                             alt="Windows"
                             fill
                             className="object-contain"

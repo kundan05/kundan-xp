@@ -53,7 +53,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                         <div className="w-1/2 pr-12 flex flex-col items-end text-right">
                             <div className="flex flex-col items-end">
                                 <div className="relative w-35 h-25 mb-0.1 mr-4">
-                                    <Image src="/icons/xp-logo-user-provided.png" alt="XP Logo" fill className="object-contain" />
+                                    <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" />
                                 </div>
                                 <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
                                     Kundan<span className="text-[#E57E31] text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
