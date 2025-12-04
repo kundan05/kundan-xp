@@ -38,7 +38,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#5A7EDC] via-transparent to-[#5A7EDC] opacity-60"></div>
 
                 {/* Center Divider */}
-                <div className={`h-[350px] w-[1px] bg-gradient-to-b from-transparent via-white/40 to-transparent absolute left-1/2 -translate-x-1/2 shadow-[1px_0_0_rgba(0,0,0,0.1)] transition-opacity duration-500 ${isLoggingIn ? 'opacity-0' : 'opacity-100'}`}></div>
+                <div className={`hidden md:block h-[350px] w-[1px] bg-gradient-to-b from-transparent via-white/40 to-transparent absolute left-1/2 -translate-x-1/2 shadow-[1px_0_0_rgba(0,0,0,0.1)] transition-opacity duration-500 ${isLoggingIn ? 'opacity-0' : 'opacity-100'}`}></div>
 
                 {isLoggingIn ? (
                     <div className="z-30 animate-fade-in">
@@ -47,27 +47,29 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                         </h1>
                     </div>
                 ) : (
-                    <div className="flex w-full max-w-5xl items-center relative z-10 animate-fade-in">
+                    <div className="flex flex-col md:flex-row w-full max-w-5xl items-center relative z-10 animate-fade-in gap-0 md:gap-0 h-full md:h-auto justify-center md:justify-start">
                         {/* Left Side - Logo */}
-                        {/* Left Side - Logo */}
-                        <div className="w-1/2 pr-12 flex flex-col items-end text-right">
-                            <div className="flex flex-col items-end">
-                                <div className="relative w-35 h-25 mb-0.1 mr-4">
+                        <div className="w-full md:w-1/2 md:pr-12 flex flex-col items-center md:items-end text-center md:text-right py-8 md:py-0">
+                            <div className="flex flex-col items-center md:items-end">
+                                <div className="relative w-35 h-25 mb-0.1 md:mr-4">
                                     <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" />
                                 </div>
-                                <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
+                                <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-center md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
                                     Kundan<span className="text-[#E57E31] text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
                                 </h1>
-                                <p className="text-white text-1xl font-normal mt-0.2 tracking-wide mr-18" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
+                                <p className="text-white text-1xl font-normal mt-0.2 tracking-wide md:mr-18" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
                             </div>
-                            <p className="text-white text-1xl font-normal mb-4 mt-4" style={{ fontFamily: 'Tahoma, sans-serif' }}>To begin, click on KundanGowda N to log in</p>
+                            <p className="hidden md:block text-white text-1xl font-normal mb-4 mt-4" style={{ fontFamily: 'Tahoma, sans-serif' }}>To begin, click on KundanGowda N to log in</p>
                         </div>
 
+                        {/* Mobile Horizontal Divider */}
+                        <div className="block md:hidden w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent my-4"></div>
+
                         {/* Right Side - User List */}
-                        <div className="w-1/2 pl-12 flex flex-col items-start">
+                        <div className="w-full md:w-1/2 md:pl-12 flex flex-col items-center md:items-start py-8 md:py-0">
                             <button
                                 onClick={handleLoginClick}
-                                className="flex items-center gap-5 group p-3 rounded-xl hover:bg-gradient-to-b hover:from-[#2F68E8]/50 hover:to-[#0F42C0]/50 border border-transparent hover:border-white/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] transition-all w-full max-w-md text-left"
+                                className="flex flex-col md:flex-row items-center gap-5 group p-3 rounded-xl hover:bg-gradient-to-b hover:from-[#2F68E8]/50 hover:to-[#0F42C0]/50 border border-transparent hover:border-white/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] transition-all w-full max-w-md text-center md:text-left"
                             >
                                 <div className="w-20 h-20 bg-orange-200 rounded-[4px] border-[3px] border-white/80 overflow-hidden relative shadow-lg group-hover:border-[#FFD700] transition-colors">
                                     <Image
@@ -77,7 +79,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                                         className="object-cover"
                                     />
                                 </div>
-                                <div className="flex flex-col justify-center">
+                                <div className="flex flex-col justify-center items-center md:items-start">
                                     <span className="text-white text-3xl font-normal" style={{ fontFamily: 'Tahoma, sans-serif' }}>KundanGowda N</span>
                                     <span className="text-[#003399] text-lg font-bold group-hover:text-[#FFD700] transition-colors" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</span>
                                 </div>
@@ -88,22 +90,29 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
             </div>
 
             {/* Bottom Bar */}
-            <div className="h-[80px] w-full bg-[#003399] border-t-[2px] border-[#E57E31] flex items-center justify-between px-12 z-20">
+            <div className="h-[80px] w-full bg-[#003399] border-t-[2px] border-[#E57E31] flex items-center justify-center md:justify-between px-4 md:px-12 z-20">
                 {!isLoggingIn && (
                     <>
-                        <button
-                            onClick={onShutdown}
-                            className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
-                        >
-                            <div className="w-9 h-9 bg-gradient-to-br from-[#3B9D00] to-[#286800] rounded-[3px] border border-white/40 flex items-center justify-center shadow-md group-hover:brightness-110 relative">
-                                <Image src="/icons/restart.png" alt="Restart" width={24} height={24} className="drop-shadow-sm" />
-                            </div>
-                            <span className="font-bold text-base tracking-wide" style={{ fontFamily: 'Tahoma, sans-serif' }}>Restart Kundan XP</span>
-                        </button>
+                        <div className="hidden md:flex items-center gap-3">
+                            <button
+                                onClick={onShutdown}
+                                className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
+                            >
+                                <div className="w-9 h-9 bg-gradient-to-br from-[#3B9D00] to-[#286800] rounded-[3px] border border-white/40 flex items-center justify-center shadow-md group-hover:brightness-110 relative">
+                                    <Image src="/icons/restart.png" alt="Restart" width={24} height={24} className="drop-shadow-sm" />
+                                </div>
+                                <span className="font-bold text-base tracking-wide" style={{ fontFamily: 'Tahoma, sans-serif' }}>Restart Kundan XP</span>
+                            </button>
+                        </div>
 
-                        <div className="text-white/60 text-sm max-w-md text-right leading-tight font-medium" style={{ fontFamily: 'Tahoma, sans-serif' }}>
+                        <div className="hidden md:block text-white/60 text-sm max-w-md text-right leading-tight font-medium" style={{ fontFamily: 'Tahoma, sans-serif' }}>
                             After you log on, the system's yours to explore.<br />
                             Every detail has been designed with a purpose.
+                        </div>
+
+                        {/* Mobile Footer Text */}
+                        <div className="md:hidden text-white text-base font-normal" style={{ fontFamily: 'Tahoma, sans-serif' }}>
+                            Tap on the user icon to begin
                         </div>
                     </>
                 )}

@@ -43,10 +43,13 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                 onConfirm={handleConfirmLink}
                 onCancel={() => setDialogOpen(false)}
             />
-            <div className="absolute bottom-[30px] left-0 w-[380px] h-[480px] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[60] font-sans select-none">
+            <div className="absolute bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[60] font-tahoma select-none">
                 {/* Header */}
-                <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg">
-                    <div className="w-12 h-12 bg-white rounded-[3px] border-2 border-white/40 shadow-sm overflow-hidden relative">
+                <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative overflow-hidden">
+                    {/* Header Highlight */}
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-white/30" />
+
+                    <div className="w-12 h-12 bg-white rounded-[3px] border-[2px] border-white shadow-[0_0_2px_rgba(0,0,0,0.5)] overflow-hidden relative shrink-0">
                         <Image
                             src="/icons/user.jpeg"
                             alt="User"
@@ -54,7 +57,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                             className="object-cover"
                         />
                     </div>
-                    <span className="text-white font-bold text-lg drop-shadow-md">Kundan</span>
+                    <span className="text-white font-bold text-[18px] drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]">Kundan</span>
                 </div>
 
                 {/* Body */}
@@ -111,11 +114,22 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                         >
                             <div className="h-[1px] bg-gradient-to-r from-transparent via-[#D1D1D1] to-transparent mb-1" />
                             <button
-                                className={`w-full py-2 flex items-center justify-center gap-1.5 hover:bg-[#2F71CD] hover:text-white group transition-colors rounded-sm ${showAllPrograms ? 'bg-[#2F71CD] text-white' : ''}`}
+                                className={`w-full h-[30px] flex items-center justify-center gap-1.5 hover:bg-[#2F71CD] hover:text-white group transition-colors rounded-sm ${showAllPrograms ? 'bg-[#2F71CD] text-white' : ''}`}
                                 onMouseEnter={() => setShowAllPrograms(true)}
+                                onClick={() => setShowAllPrograms(!showAllPrograms)}
                             >
-                                <span className="font-bold text-xs italic">All Programs</span>
-                                <div className={`w-0 h-0 border-l-[5px] border-l-[#3B9D00] border-y-[4px] border-y-transparent group-hover:border-l-white ${showAllPrograms ? 'border-l-white' : ''}`} />
+                                <span className="font-bold text-[11px] text-black group-hover:text-white font-tahoma">All Programs</span>
+                                <div className="relative w-[18px] h-[18px] flex items-center justify-center">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-sm">
+                                        <defs>
+                                            <linearGradient id="xpGreenGradient" x1="12" y1="4" x2="12" y2="20" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0%" stopColor="#49B626" />
+                                                <stop offset="100%" stopColor="#2E7D18" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path d="M8 5V19L19 12L8 5Z" fill="url(#xpGreenGradient)" stroke="#1F5211" strokeWidth="1.5" strokeLinejoin="round" />
+                                    </svg>
+                                </div>
                             </button>
 
                             {/* All Programs Submenu */}
@@ -138,84 +152,90 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                     </div>
 
                     {/* Right Column - System Places */}
-                    <div className="w-1/2 bg-[#D3E5FA] border-l border-[#95BDE7] py-2 pr-1 pl-0.5 flex flex-col gap-1">
-                        <StartMenuLink
-                            icon="/icons/linkedin.svg"
-                            label="LinkedIn"
-                            bold
-                            onClick={() => handleLinkClick('/icons/linkedin.svg', 'LinkedIn', 'https://www.linkedin.com/in/kundangowda-n-363a50229/')}
-                        />
-                        <StartMenuLink
-                            icon="/icons/github.png"
-                            label="GitHub"
-                            bold
-                            onClick={() => handleLinkClick('/icons/github.png', 'GitHub', 'https://github.com/kundan05')}
-                        />
-                        <StartMenuLink
-                            icon="/icons/instagram.png"
-                            label="Instagram"
-                            bold
-                            onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/kundan_gowda_/')}
-                        />
+                    <div className="w-1/2 bg-[#D3E5FA] border-l border-[#95BDE7] py-2 pr-1 pl-0.5 flex flex-col gap-1 relative">
+                        {/* Grid Pattern Overlay */}
+                        <div className="absolute inset-0 pointer-events-none opacity-30" style={{
+                            backgroundImage: 'linear-gradient(90deg, #fff 1px, transparent 1px), linear-gradient(#fff 1px, transparent 1px)',
+                            backgroundSize: '4px 4px'
+                        }} />
 
+                        <div className="relative z-10 flex flex-col gap-1">
+                            <StartMenuLink
+                                icon="/icons/linkedin.svg"
+                                label="LinkedIn"
+                                bold
+                                onClick={() => handleLinkClick('/icons/linkedin.svg', 'LinkedIn', 'https://www.linkedin.com/in/kundangowda-n-363a50229/')}
+                            />
+                            <StartMenuLink
+                                icon="/icons/github.png"
+                                label="GitHub"
+                                bold
+                                onClick={() => handleLinkClick('/icons/github.png', 'GitHub', 'https://github.com/kundan05')}
+                            />
+                            <StartMenuLink
+                                icon="/icons/instagram.png"
+                                label="Instagram"
+                                bold
+                                onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/kundan_gowda_/')}
+                            />
 
+                            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#A7C6E8] to-transparent my-1 mx-2" />
 
-                        <div className="h-[1px] bg-gradient-to-r from-transparent via-[#A7C6E8] to-transparent my-1 mx-2" />
-
-                        <div
-                            className="relative"
-                            onMouseLeave={() => setShowRecent(false)}
-                        >
                             <div
-                                onMouseEnter={() => setShowRecent(true)}
+                                className="relative"
+                                onMouseLeave={() => setShowRecent(false)}
                             >
-                                <StartMenuLink
-                                    icon="/icons/recent.png"
-                                    label="Recently Used"
-                                    hasArrow
-                                    onClick={() => setShowRecent(true)}
-                                />
+                                <div
+                                    onMouseEnter={() => setShowRecent(true)}
+                                >
+                                    <StartMenuLink
+                                        icon="/icons/recent.png"
+                                        label="Recently Used"
+                                        hasArrow
+                                        onClick={() => setShowRecent(!showRecent)}
+                                    />
+                                </div>
+
+                                {/* Recently Used Submenu */}
+                                {showRecent && (
+                                    <div className="absolute md:left-[100%] right-0 md:right-auto bottom-0 md:bottom-[-100px] w-48 bg-white border border-[#555] shadow-[4px_4px_4px_rgba(0,0,0,0.5)] flex flex-col py-[2px] z-50 ml-[2px]">
+                                        <StartMenuItem icon="/icons/antigravity.png" label="Anti-Gravity" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/datadog-original.svg" label="DataDog" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/splunk.svg" label="Splunk" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/jenkins-original.svg" label="Jenkins" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/ubuntu-plain.svg" label="Ubuntu" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/grafana-original.svg" label="Grafana" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/blender-original.svg" label="Blender" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/icons8-chatgpt-96.png" label="ChatGPT" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/icons8-anthropic-96.png" label="Claude" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/cursor.svg" label="Cursor" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/docker-original.svg" label="Docker" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/git-original.svg" label="Git" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/copilot.svg" label="GitHub Copilot" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/obs.svg" label="OBS Studio" onClick={() => { }} compact disabled />
+                                        <StartMenuItem icon="/icons/vscode-original.svg" label="VS Code" onClick={() => { }} compact disabled />
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Recently Used Submenu */}
-                            {showRecent && (
-                                <div className="absolute left-[100%] bottom-[-100px] w-48 bg-white border border-[#555] shadow-[4px_4px_4px_rgba(0,0,0,0.5)] flex flex-col py-[2px] z-50 ml-[2px]">
-                                    <StartMenuItem icon="/icons/antigravity.png" label="Anti-Gravity" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/datadog-original.svg" label="DataDog" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/splunk.svg" label="Splunk" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/jenkins-original.svg" label="Jenkins" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/ubuntu-plain.svg" label="Ubuntu" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/grafana-original.svg" label="Grafana" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/blender-original.svg" label="Blender" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/icons8-chatgpt-96.png" label="ChatGPT" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/icons8-anthropic-96.png" label="Claude" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/cursor.svg" label="Cursor" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/docker-original.svg" label="Docker" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/git-original.svg" label="Git" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/copilot.svg" label="GitHub Copilot" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/obs.svg" label="OBS Studio" onClick={() => { }} compact disabled />
-                                    <StartMenuItem icon="/icons/vscode-original.svg" label="VS Code" onClick={() => { }} compact disabled />
-                                </div>
-                            )}
+                            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#A7C6E8] to-transparent my-1 mx-2" />
+
+                            <StartMenuLink
+                                icon="/icons/cmd.png"
+                                label="Command Prompt"
+                                onClick={() => onItemClick('cmd')}
+                            />
+                            <StartMenuLink
+                                icon="/icons/image-viewer.png"
+                                label="Image Viewer"
+                                onClick={() => onItemClick('image-viewer')}
+                            />
+                            <StartMenuLink
+                                icon="/icons/resume-custom.png"
+                                label="My Resume"
+                                onClick={() => onItemClick('resume')}
+                            />
                         </div>
-
-                        <div className="h-[1px] bg-gradient-to-r from-transparent via-[#A7C6E8] to-transparent my-1 mx-2" />
-
-                        <StartMenuLink
-                            icon="/icons/cmd.png"
-                            label="Command Prompt"
-                            onClick={() => onItemClick('cmd')}
-                        />
-                        <StartMenuLink
-                            icon="/icons/image-viewer.png"
-                            label="Image Viewer"
-                            onClick={() => onItemClick('image-viewer')}
-                        />
-                        <StartMenuLink
-                            icon="/icons/resume-custom.png"
-                            label="My Resume"
-                            onClick={() => onItemClick('resume')}
-                        />
                     </div>
                 </div>
 
@@ -225,20 +245,20 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                         onClick={onLogOff}
                         className="flex items-center gap-1 px-2 py-1 hover:bg-[#1C5BB8] rounded-sm transition-colors group"
                     >
-                        <div className="bg-[#E57E31] p-[2px] rounded-[2px] shadow-sm group-hover:brightness-110">
-                            <Image src="/icons/logout.png" alt="Log Off" width={14} height={14} />
+                        <div className="relative w-[18px] h-[18px]">
+                            <Image src="/icons/Key.png" alt="Log Off" fill className="object-contain" />
                         </div>
-                        <span className="text-white text-xs font-bold shadow-black drop-shadow-sm">Log Off</span>
+                        <span className="text-white text-[11px] font-normal shadow-black drop-shadow-sm">Log Off</span>
                     </button>
 
                     <button
                         onClick={onTurnOff}
                         className="flex items-center gap-1 px-2 py-1 hover:bg-[#1C5BB8] rounded-sm transition-colors group"
                     >
-                        <div className="bg-[#E14242] p-[2px] rounded-[2px] shadow-sm group-hover:brightness-110">
-                            <Image src="/icons/turn-off.png" alt="Turn Off" width={14} height={14} />
+                        <div className="relative w-[18px] h-[18px]">
+                            <Image src="/icons/turn-off.png" alt="Turn Off" fill className="object-contain" />
                         </div>
-                        <span className="text-white text-xs font-bold shadow-black drop-shadow-sm">Shut Down</span>
+                        <span className="text-white text-[11px] font-normal shadow-black drop-shadow-sm">Shut Down</span>
                     </button>
                 </div>
             </div >

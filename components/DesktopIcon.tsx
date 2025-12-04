@@ -3,10 +3,30 @@ import { DesktopIconProps } from './types';
 import Image from 'next/image';
 
 export default function DesktopIcon({ id, title, icon, onDoubleClick }: DesktopIconProps) {
+    const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+
+    React.useEffect(() => {
+        // Check if the device has a coarse pointer (touch)
+        const checkTouch = () => {
+            setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
+        };
+
+        checkTouch();
+        window.addEventListener('resize', checkTouch);
+        return () => window.removeEventListener('resize', checkTouch);
+    }, []);
+
+    const handleClick = () => {
+        if (isTouchDevice) {
+            onDoubleClick(id);
+        }
+    };
+
     return (
         <div
             className="flex flex-col items-center w-28 m-4 cursor-pointer group"
             onDoubleClick={() => onDoubleClick(id)}
+            onClick={handleClick}
         >
             <div className="w-16 h-16 mb-2 relative flex items-center justify-center drop-shadow-md">
                 <Image

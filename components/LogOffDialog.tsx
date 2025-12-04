@@ -1,4 +1,4 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface LogOffDialogProps {
@@ -11,7 +11,12 @@ export default function LogOffDialog({ onCancel, onLogOff, onSwitchUser }: LogOf
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center font-sans select-none">
             {/* Backdrop - Grayscale and Dimmed */}
-            <div className="absolute inset-0 bg-black/40 backdrop-grayscale transition-all duration-500" />
+            <motion.div
+                initial={{ backdropFilter: 'grayscale(0%)', backgroundColor: 'rgba(0,0,0,0)' }}
+                animate={{ backdropFilter: 'grayscale(100%)', backgroundColor: 'rgba(0,0,0,0.4)' }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="absolute inset-0"
+            />
 
             {/* Dialog Box */}
             <div className="relative w-[310px] bg-[#003399] rounded-t-lg rounded-b-md shadow-[0_0_20px_rgba(0,0,0,0.5)] overflow-hidden border border-[#003399] animate-in fade-in zoom-in duration-200">

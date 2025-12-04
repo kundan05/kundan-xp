@@ -338,11 +338,19 @@ export default function Desktop() {
         >
             {/* Desktop Icons */}
             {/* Desktop Icons */}
-            <div className="absolute top-0 left-0 bottom-0 flex flex-col flex-wrap content-start p-2 gap-2 z-0">
-                <DesktopIcon id="about" icon="/icons/about-custom.png" title="About Me" onDoubleClick={() => handleOpenWindow('about')} />
-                <DesktopIcon id="resume" icon="/icons/resume-custom.png" title="My Resume" onDoubleClick={() => handleOpenWindow('resume')} />
-                <DesktopIcon id="projects" icon="/icons/projects-custom.png" title="My Projects" onDoubleClick={() => handleOpenWindow('projects')} />
-                <DesktopIcon id="contact" icon="/icons/outlook.png" title="Contact Me" onDoubleClick={() => handleOpenWindow('contact')} />
+            <div className="absolute top-0 left-0 bottom-8 right-0 flex flex-col flex-wrap content-start p-2 gap-2 z-0 overflow-hidden pointer-events-none">
+                <div className="pointer-events-auto">
+                    <DesktopIcon id="about" icon="/icons/about-custom.png" title="About Me" onDoubleClick={() => handleOpenWindow('about')} />
+                </div>
+                <div className="pointer-events-auto">
+                    <DesktopIcon id="resume" icon="/icons/resume-custom.png" title="My Resume" onDoubleClick={() => handleOpenWindow('resume')} />
+                </div>
+                <div className="pointer-events-auto">
+                    <DesktopIcon id="projects" icon="/icons/projects-custom.png" title="My Projects" onDoubleClick={() => handleOpenWindow('projects')} />
+                </div>
+                <div className="pointer-events-auto">
+                    <DesktopIcon id="contact" icon="/icons/outlook.png" title="Contact Me" onDoubleClick={() => handleOpenWindow('contact')} />
+                </div>
             </div>
 
             {/* Windows */}

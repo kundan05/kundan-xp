@@ -66,7 +66,7 @@ export default function Taskbar({
                         key={w.id}
                         onClick={() => onToggleWindow(w.id)}
                         className={`
-              h-[22px] px-2 min-w-[120px] max-w-[160px] flex items-center gap-2 rounded-[2px] text-xs text-white truncate
+              h-[22px] px-2 min-w-[60px] md:min-w-[120px] max-w-[160px] flex items-center gap-2 rounded-[2px] text-xs text-white truncate
               ${activeWindowId === w.id && !w.isMinimized
                                 ? 'bg-[#1E52B7] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.5)]'
                                 : 'bg-[#3C81F3] hover:bg-[#5390F6] shadow-[inset_1px_1px_0px_rgba(255,255,255,0.3)] border-b border-[#1F48B0]'}
@@ -81,7 +81,7 @@ export default function Taskbar({
                                 className="object-contain"
                             />
                         </div>
-                        <span className="truncate">{w.title}</span>
+                        <span className="truncate hidden sm:inline">{w.title}</span>
                     </button>
                 ))}
             </div>

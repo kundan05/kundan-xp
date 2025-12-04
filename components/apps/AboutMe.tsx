@@ -146,7 +146,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
             {/* Main Content Area */}
             <div className="flex-1 flex overflow-hidden">
                 {/* Sidebar */}
-                <div className="w-[150px] bg-gradient-to-b from-[#7BA2E7] to-[#6375D6] p-3 flex flex-col gap-3 overflow-y-auto shrink-0">
+                <div className="hidden md:flex w-[150px] bg-gradient-to-b from-[#7BA2E7] to-[#6375D6] p-3 flex-col gap-3 overflow-y-auto shrink-0">
                     {/* Social Links */}
                     <div className="rounded-t-[4px] overflow-hidden shadow-sm">
                         <div
