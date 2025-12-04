@@ -163,13 +163,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                         {isSocialOpen && (
                             <div className="relative p-2 flex flex-col gap-1 text-[10px] text-[#0C327D] bg-white border-x border-b border-white/50">
                                 {/* Grid Pattern */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-10"
-                                    style={{
-                                        backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-                                        backgroundSize: '4px 4px'
-                                    }}
-                                />
+
                                 <div className="relative z-10 flex flex-col gap-1">
                                     <a href="https://www.linkedin.com/in/kundangowda-n-363a50229/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5">
                                         <Image src="/icons/linkedin.svg" alt="LI" width={14} height={14} /> LinkedIn
@@ -200,13 +194,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                         {isSkillsOpen && (
                             <div className="relative p-2 flex flex-col gap-1 text-[10px] text-[#0C327D] bg-white border-x border-b border-white/50">
                                 {/* Grid Pattern */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-10"
-                                    style={{
-                                        backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-                                        backgroundSize: '4px 4px'
-                                    }}
-                                />
+
                                 <div className="relative z-10 flex flex-col gap-1">
                                     <div className="flex items-center gap-2 py-0.5"><Image src="/icons/java-original.svg" alt="Icon" width={14} height={14} /> Java</div>
                                     <div className="flex items-center gap-2 py-0.5"><Image src="/icons/python-original.svg" alt="Icon" width={14} height={14} /> Python</div>
@@ -238,13 +226,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                         {isSoftwareOpen && (
                             <div className="relative p-2 flex flex-col gap-1 text-[10px] text-[#0C327D] bg-white border-x border-b border-white/50">
                                 {/* Grid Pattern */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none opacity-10"
-                                    style={{
-                                        backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-                                        backgroundSize: '4px 4px'
-                                    }}
-                                />
+
                                 <div className="relative z-10 flex flex-col gap-1">
                                     <div className="flex items-center gap-2 py-0.5"><Image src="/icons/amazonwebservices-original-wordmark.svg" alt="Icon" width={14} height={14} /> AWS</div>
                                     <div className="flex items-center gap-2 py-0.5"><Image src="/icons/vscode-original.svg" alt="Icon" width={14} height={14} /> VS Code</div>
@@ -264,13 +246,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                 {/* Main Content */}
                 <div className="flex-1 overflow-y-auto relative bg-gradient-to-r from-[#536AE4] to-[#3E55C8]">
                     {/* Grid Pattern Overlay */}
-                    <div
-                        className="absolute inset-0 pointer-events-none opacity-10"
-                        style={{
-                            backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                            backgroundSize: '4px 4px'
-                        }}
-                    />
+
 
                     <div className="relative z-10 p-8 max-w-3xl">
                         <h1 className="text-4xl font-bold text-white mb-12 drop-shadow-md">My Journey</h1>

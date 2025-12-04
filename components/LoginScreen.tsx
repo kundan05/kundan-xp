@@ -26,13 +26,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#536AE4] to-[#3E55C8]"></div>
 
                 {/* Grid Pattern */}
-                <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                        backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
-                        backgroundSize: '4px 4px'
-                    }}
-                ></div>
+
 
                 {/* Radial Gradient Overlay for depth */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#5A7EDC] via-transparent to-[#5A7EDC] opacity-60"></div>

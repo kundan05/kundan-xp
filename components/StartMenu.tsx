@@ -43,7 +43,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                 onConfirm={handleConfirmLink}
                 onCancel={() => setDialogOpen(false)}
             />
-            <div className="absolute bottom-[50px] md:bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[60] font-tahoma select-none">
+            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none">
                 {/* Header */}
                 <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative overflow-hidden">
                     {/* Header Highlight */}
@@ -154,10 +154,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                     {/* Right Column - System Places */}
                     <div className="w-1/2 bg-[#D3E5FA] border-l border-[#95BDE7] py-2 pr-1 pl-0.5 flex flex-col gap-1 relative">
                         {/* Grid Pattern Overlay */}
-                        <div className="absolute inset-0 pointer-events-none opacity-30" style={{
-                            backgroundImage: 'linear-gradient(90deg, #fff 1px, transparent 1px), linear-gradient(#fff 1px, transparent 1px)',
-                            backgroundSize: '4px 4px'
-                        }} />
+
 
                         <div className="relative z-10 flex flex-col gap-1">
                             <StartMenuLink

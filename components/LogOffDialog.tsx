@@ -32,13 +32,7 @@ export default function LogOffDialog({ onCancel, onLogOff, onSwitchUser }: LogOf
                 {/* Body */}
                 <div className="bg-gradient-to-b from-[#628BCE] to-[#4277C6] p-6 pt-8 pb-4 relative">
                     {/* Grid Pattern Overlay */}
-                    <div
-                        className="absolute inset-0 opacity-10 pointer-events-none"
-                        style={{
-                            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)',
-                            backgroundSize: '4px 4px'
-                        }}
-                    />
+
 
                     <div className="flex justify-center gap-8 relative z-10">
                         {/* Switch User Button */}

@@ -43,13 +43,7 @@ export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, on
                 {/* Content Area */}
                 <div className="p-4 bg-[#ECE9D8] relative">
                     {/* Grid Pattern */}
-                    <div
-                        className="absolute inset-0 opacity-10 pointer-events-none"
-                        style={{
-                            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-                            backgroundSize: '2px 2px'
-                        }}
-                    />
+
 
                     <div className="flex flex-col items-center gap-3 relative z-10 py-2">
                         <div className="relative w-12 h-12 drop-shadow-md">

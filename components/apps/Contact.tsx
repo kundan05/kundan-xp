@@ -228,13 +228,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
                         onChange={(e) => setFormData(prev => ({ ...prev, body: e.target.value }))}
                     />
                     {/* Grid Background */}
-                    <div
-                        className="absolute inset-0 pointer-events-none opacity-[0.08]"
-                        style={{
-                            backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-                            backgroundSize: '20px 20px'
-                        }}
-                    />
+
                 </div>
             </div>
 
