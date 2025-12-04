@@ -85,6 +85,7 @@ export default function Window({ title, children, isActive, zIndex, icon, onClos
                     >
                         <div className="relative w-full h-full">
                             <Image src="/icons/Minimize.png" alt="Minimize" fill className="object-contain" />
+                            <Image src="/icons/Minimize.png" alt="Minimize" fill className="object-contain" sizes="21px" />
                         </div>
                     </button>
                     <button
@@ -92,7 +93,7 @@ export default function Window({ title, children, isActive, zIndex, icon, onClos
                         className="w-[21px] h-[21px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all"
                     >
                         <div className="relative w-full h-full">
-                            <Image src="/icons/Maximize.png" alt="Maximize" fill className="object-contain" />
+                            <Image src="/icons/Maximize.png" alt="Maximize" fill className="object-contain" sizes="21px" />
                         </div>
                     </button>
                     <button
@@ -100,7 +101,7 @@ export default function Window({ title, children, isActive, zIndex, icon, onClos
                         className="w-[21px] h-[21px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all"
                     >
                         <div className="relative w-full h-full">
-                            <Image src="/icons/Exit.png" alt="Close" fill className="object-contain" />
+                            <Image src="/icons/Exit.png" alt="Close" fill className="object-contain" sizes="21px" />
                         </div>
                     </button>
                 </div>

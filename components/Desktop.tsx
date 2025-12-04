@@ -190,9 +190,19 @@ export default function Desktop() {
 
     const startupAudioRef = React.useRef<HTMLAudioElement>(null);
 
+    const handleStartupSoundEnded = () => {
+        setShowNotification(true);
+        const audio = new Audio('/icons/windows-xp-balloon-sound.mp3');
+        audio.play().catch(e => console.error("Notification audio play failed", e));
+    };
+
     useEffect(() => {
         if (appState === 'desktop') {
-            startupAudioRef.current?.play().catch(e => console.error("Audio play failed", e));
+            startupAudioRef.current?.play().catch(e => {
+                console.error("Audio play failed", e);
+                // Fallback if audio fails to play
+                handleStartupSoundEnded();
+            });
         }
     }, [appState]);
 
@@ -265,7 +275,6 @@ export default function Desktop() {
 
     const handleLogin = () => {
         setAppState('desktop');
-        setTimeout(() => setShowNotification(true), 1000); // Show notification after 1s
     };
 
     const handleLogOff = () => {
@@ -285,9 +294,10 @@ export default function Desktop() {
     };
 
     const confirmSwitchUser = () => {
-        // Keep windows open, just go to login screen
+        // Restart behavior: close windows and go to booting screen
+        setWindows(prev => prev.map(w => ({ ...w, isOpen: false, isMaximized: false })));
         setShowLogOffDialog(false);
-        setAppState('login');
+        setAppState('booting');
     };
 
     const handleTurnOffRequest = () => {
@@ -439,7 +449,7 @@ export default function Desktop() {
             )}
 
             {/* Startup Sound */}
-            <audio ref={startupAudioRef} src="/icons/windows-xp-startup.mp3" />
+            <audio ref={startupAudioRef} src="/icons/windows-xp-startup.mp3" onEnded={handleStartupSoundEnded} />
         </div>
     );
 }

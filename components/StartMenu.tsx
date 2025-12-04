@@ -43,7 +43,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                 onConfirm={handleConfirmLink}
                 onCancel={() => setDialogOpen(false)}
             />
-            <div className="absolute bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[60] font-tahoma select-none">
+            <div className="absolute bottom-[50px] md:bottom-[30px] left-0 w-full max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[60] font-tahoma select-none">
                 {/* Header */}
                 <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative overflow-hidden">
                     {/* Header Highlight */}
@@ -246,7 +246,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                         className="flex items-center gap-1 px-2 py-1 hover:bg-[#1C5BB8] rounded-sm transition-colors group"
                     >
                         <div className="relative w-[18px] h-[18px]">
-                            <Image src="/icons/Key.png" alt="Log Off" fill className="object-contain" />
+                            <Image src="/icons/Key.png" alt="Log Off" fill className="object-contain" sizes="24px" />
                         </div>
                         <span className="text-white text-[11px] font-normal shadow-black drop-shadow-sm">Log Off</span>
                     </button>
@@ -255,8 +255,8 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                         onClick={onTurnOff}
                         className="flex items-center gap-1 px-2 py-1 hover:bg-[#1C5BB8] rounded-sm transition-colors group"
                     >
-                        <div className="relative w-[18px] h-[18px]">
-                            <Image src="/icons/turn-off.png" alt="Turn Off" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px]">
+                            <Image src="/icons/turn-off.png" alt="Turn Off" fill className="object-contain" sizes="24px" />
                         </div>
                         <span className="text-white text-[11px] font-normal shadow-black drop-shadow-sm">Shut Down</span>
                     </button>

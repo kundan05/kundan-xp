@@ -247,7 +247,7 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
                                 <Pause size={20} fill="white" color="white" />
                             ) : (
                                 <div className="relative w-5 h-5 ml-1">
-                                    <Image src="/icons/play.png" alt="Play" fill className="object-contain brightness-200" />
+                                    <Image src="/icons/play.png" alt="Play" fill className="object-contain brightness-200" sizes="20px" />
                                 </div>
                             )}
                         </button>
@@ -258,7 +258,7 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
                             className="w-8 h-8 flex items-center justify-center hover:brightness-125 active:scale-95 transition-transform opacity-80 hover:opacity-100"
                         >
                             <div className="relative w-3 h-3">
-                                <Image src="/icons/stop.png" alt="Stop" fill className="object-contain" />
+                                <Image src="/icons/stop.png" alt="Stop" fill className="object-contain" sizes="12px" />
                             </div>
                         </button>
 

@@ -135,41 +135,42 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
             <div className="flex items-center gap-1 p-1 border-b border-[#D1D1D1] bg-[#ECE9D8] shadow-[0_1px_0_#fff]">
                 <button
                     onClick={handleZoom}
-                    className="flex items-center gap-1 px-2 py-1 hover:bg-white/50 border border-transparent hover:border-[#D1D1D1] rounded-sm active:border-gray-400 active:shadow-inner group"
+                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                 >
-                    <div className="relative w-4 h-4">
-                        <Image src="/icons/Search.png" alt="Zoom" fill className="object-contain" />
+                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                        <Image src="/icons/Search.png" alt="Zoom" fill className="object-contain" sizes="24px" />
                     </div>
-                    <span className="text-[11px] text-black">Zoom {Math.round(zoomLevel * 100)}%</span>
+                    <span className="text-[11px] text-[#000000]">Zoom</span>
                 </button>
-                <div className="w-[1px] h-6 bg-[#D1D1D1] mx-1" />
                 <button
+                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     onClick={handleSave}
-                    className="flex items-center gap-1 px-2 py-1 hover:bg-white/50 border border-transparent hover:border-[#D1D1D1] rounded-sm active:border-gray-400 active:shadow-inner group"
                 >
-                    <div className="relative w-4 h-4">
-                        <Image src="/icons/Save.png" alt="Save" fill className="object-contain" />
+                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                        <Image src="/icons/Save.png" alt="Save" fill className="object-contain" sizes="24px" />
                     </div>
-                    <span className="text-[11px] text-black">Save</span>
+                    <span className="text-[11px] text-[#000000]">Save</span>
                 </button>
                 <button
                     onClick={handlePrint}
-                    className="flex items-center gap-1 px-2 py-1 hover:bg-white/50 border border-transparent hover:border-[#D1D1D1] rounded-sm active:border-gray-400 active:shadow-inner group"
+                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                 >
-                    <div className="relative w-4 h-4">
-                        <Image src="/icons/Printer.png" alt="Print" fill className="object-contain" />
+                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                        <Image src="/icons/Printer.png" alt="Print" fill className="object-contain" sizes="24px" />
                     </div>
-                    <span className="text-[11px] text-black">Print</span>
+                    <span className="text-[11px] text-[#000000]">Print</span>
                 </button>
-                <div className="w-[1px] h-6 bg-[#D1D1D1] mx-1" />
+
+                <div className="w-[1px] h-[40px] bg-[#D6D6D6] mx-1" />
+
                 <button
                     onClick={handleContact}
-                    className="flex items-center gap-1 px-2 py-1 hover:bg-white/50 border border-transparent hover:border-[#D1D1D1] rounded-sm active:border-gray-400 active:shadow-inner group"
+                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                 >
-                    <div className="relative w-4 h-4">
-                        <Image src="/icons/outlook.png" alt="Contact" fill className="object-contain" />
+                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                        <Image src="/icons/outlook.png" alt="Contact" fill className="object-contain" sizes="24px" />
                     </div>
-                    <span className="text-[11px] text-black">Contact Me</span>
+                    <span className="text-[11px] text-[#000000]">Contact Me</span>
                 </button>
             </div>
 

@@ -85,18 +85,21 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
             {/* Toolbar */}
             <div className="flex items-center gap-1 px-2 py-1 bg-[#ECE9D8] border-b border-[#D4D0C8]">
                 <div className="flex items-center gap-1">
-                    <button className="flex items-center gap-1 px-1 border border-transparent rounded-sm group opacity-50 cursor-default">
-                        <div className="relative w-8 h-8">
-                            <Image src="/icons/Back.png" alt="Back" fill className="object-contain" />
+                    <button className="flex items-center gap-1 px-2 py-1 hover:bg-black/5 rounded-[3px] disabled:opacity-50" disabled>
+                        <div className="relative w-[20px] h-[20px]">
+                            <Image src="/icons/Back.png" alt="Back" fill className="object-contain" sizes="20px" />
                         </div>
-                        <span className="text-[11px] text-gray-400">Back</span>
+                        <span className="text-xs">Back</span>
                     </button>
-                    <button className="flex items-center gap-1 px-1 border border-transparent rounded-sm group opacity-50 cursor-default">
-                        <div className="relative w-8 h-8">
-                            <Image src="/icons/Forward.png" alt="Forward" fill className="object-contain" />
+                    <button className="flex items-center gap-1 px-2 py-1 hover:bg-black/5 rounded-[3px] disabled:opacity-50" disabled>
+                        <div className="relative w-[20px] h-[20px]">
+                            <Image src="/icons/Forward.png" alt="Forward" fill className="object-contain" sizes="20px" />
                         </div>
-                        <span className="text-[11px] text-gray-400">Forward</span>
-                        <div className="w-[1px] h-8 bg-[#D4D0C8] mx-1"></div>
+                    </button>
+                    <button className="flex items-center gap-1 px-2 py-1 hover:bg-black/5 rounded-[3px]">
+                        <div className="relative w-[20px] h-[20px]">
+                            <Image src="/icons/Up.png" alt="Up" fill className="object-contain" sizes="20px" />
+                        </div>
                     </button>
                 </div>
 
@@ -120,7 +123,6 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                 </button>
 
                 <div className="w-[1px] h-8 bg-[#D4D0C8] mx-1"></div>
-
                 <button className="flex items-center gap-1 px-1 border border-transparent rounded-sm opacity-50 cursor-default">
                     <div className="relative w-6 h-6">
                         <Image src="/icons/Up.png" alt="Up" fill className="object-contain" />

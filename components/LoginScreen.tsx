@@ -16,7 +16,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
     };
 
     return (
-        <div className="w-full h-screen bg-[#003399] flex flex-col relative overflow-hidden font-sans">
+        <div className="w-full h-screen md:h-screen h-[100dvh] bg-[#003399] flex flex-col relative overflow-hidden font-sans">
             {/* Top Blue Bar */}
             <div className="h-[80px] w-full bg-[#003399] border-b-[2px] border-[#E57E31] shadow-md z-20"></div>
 
@@ -52,7 +52,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                         <div className="w-full md:w-1/2 md:pr-12 flex flex-col items-center md:items-end text-center md:text-right py-8 md:py-0">
                             <div className="flex flex-col items-center md:items-end">
                                 <div className="relative w-35 h-25 mb-0.1 md:mr-4">
-                                    <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" />
+                                    <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" sizes="(max-width: 768px) 150px, 250px" />
                                 </div>
                                 <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-center md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
                                     Kundan<span className="text-[#E57E31] text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
@@ -77,6 +77,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                                         alt="User"
                                         fill
                                         className="object-cover"
+                                        sizes="80px"
                                     />
                                 </div>
                                 <div className="flex flex-col justify-center items-center md:items-start">
@@ -98,8 +99,8 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                                 onClick={onShutdown}
                                 className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
                             >
-                                <div className="w-9 h-9 bg-gradient-to-br from-[#3B9D00] to-[#286800] rounded-[3px] border border-white/40 flex items-center justify-center shadow-md group-hover:brightness-110 relative">
-                                    <Image src="/icons/restart.png" alt="Restart" width={24} height={24} className="drop-shadow-sm" />
+                                <div className="w-9 h-9 bg-gradient-to-br from-[#3B9D00] to-[#2D7600] rounded-[3px] border border-white/40 flex items-center justify-center shadow-md group-hover:brightness-110 relative">
+                                    <Image src="/icons/restart.png" alt="Turn Off" width={24} height={24} className="drop-shadow-sm" sizes="24px" />
                                 </div>
                                 <span className="font-bold text-base tracking-wide" style={{ fontFamily: 'Tahoma, sans-serif' }}>Restart Kundan XP</span>
                             </button>

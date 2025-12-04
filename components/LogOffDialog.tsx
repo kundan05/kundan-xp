@@ -23,7 +23,7 @@ export default function LogOffDialog({ onCancel, onLogOff, onSwitchUser }: LogOf
 
                 {/* Header */}
                 <div className="h-[42px] flex items-center justify-between px-3 bg-gradient-to-r from-[#003399] via-[#003399] to-[#003399]">
-                    <span className="text-white text-lg font-medium drop-shadow-md">Log Off Windows</span>
+                    <span className="text-white text-lg font-medium drop-shadow-md">Log Off Kundan XP</span>
                     <div className="relative w-6 h-6 opacity-80">
                         <Image src="/icons/xp-logo-final.png" alt="Windows" fill className="object-contain" />
                     </div>
@@ -48,7 +48,7 @@ export default function LogOffDialog({ onCancel, onLogOff, onSwitchUser }: LogOf
                         >
                             <div className="w-[42px] h-[42px] bg-gradient-to-b from-[#3E9C36] to-[#2F7629] rounded-[3px] border border-[#fff]/30 shadow-sm flex items-center justify-center group-hover:brightness-110 transition-all group-active:translate-y-[1px]">
                                 <div className="relative w-8 h-8">
-                                    <Image src="/icons/restart.png" alt="Switch User" fill className="object-contain" />
+                                    <Image src="/icons/restart.png" alt="Switch User" fill className="object-contain" sizes="32px" />
                                 </div>
                             </div>
                             <span className="text-white text-xs font-bold drop-shadow-sm">Restart</span>
@@ -61,7 +61,7 @@ export default function LogOffDialog({ onCancel, onLogOff, onSwitchUser }: LogOf
                         >
                             <div className="w-[42px] h-[42px] bg-gradient-to-b from-[#E57E31] to-[#C76115] rounded-[3px] border border-[#fff]/30 shadow-sm flex items-center justify-center group-hover:brightness-110 transition-all group-active:translate-y-[1px]">
                                 <div className="relative w-8 h-8">
-                                    <Image src="/icons/Logout.png" alt="Log Off" fill className="object-contain" />
+                                    <Image src="/icons/Logout.png" alt="Log Off" fill className="object-contain" sizes="32px" />
                                 </div>
                             </div>
                             <span className="text-white text-xs font-bold drop-shadow-sm">Log Off</span>

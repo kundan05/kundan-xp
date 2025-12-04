@@ -26,7 +26,7 @@ export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, on
                 <div className="h-[30px] bg-gradient-to-r from-[#0058EE] via-[#3593FF] to-[#288EFF] flex items-center justify-between px-2 select-none">
                     <div className="flex items-center gap-2">
                         <div className="relative w-4 h-4">
-                            <Image src={icon} alt="Icon" fill className="object-contain" />
+                            <Image src={icon} alt="Icon" fill className="object-contain" sizes="16px" />
                         </div>
                         <span className="text-white font-bold text-[13px] drop-shadow-sm font-sans tracking-wide">Open Link</span>
                     </div>
@@ -35,7 +35,7 @@ export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, on
                         className="w-[21px] h-[21px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all"
                     >
                         <div className="relative w-full h-full">
-                            <Image src="/icons/Exit.png" alt="Close" fill className="object-contain" />
+                            <Image src="/icons/Exit.png" alt="Close" fill className="object-contain" sizes="21px" />
                         </div>
                     </button>
                 </div>

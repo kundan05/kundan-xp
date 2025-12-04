@@ -3,13 +3,13 @@ import Image from 'next/image';
 
 export default function LoadingScreen() {
     return (
-        <div className="w-full h-screen bg-black flex flex-col items-center justify-center font-sans relative overflow-hidden">
+        <div className="w-full h-screen md:h-screen h-[100dvh] bg-black flex flex-col items-center justify-center font-sans relative overflow-hidden">
             {/* Main Content */}
             <div className="flex flex-col items-center gap-16 mb-20">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center md:items-end">
                     <div className="relative w-40 h-20 md:w-60 md:h-30 mb-1 md:mr-4">
-                        <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" />
+                        <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" sizes="(max-width: 768px) 160px, 240px" />
                     </div>
                     <div className="flex flex-col items-center">
                         <h1 className="text-white text-[50px] md:text-[94px] font-bold tracking-tighter drop-shadow-md flex items-start justify-center md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
@@ -32,8 +32,8 @@ export default function LoadingScreen() {
             </div>
 
             {/* Footer */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 flex items-center gap-2">
-                <span className="text-white font-bold italic text-xl">Portfolio</span>
+            <div className="absolute bottom-16 md:bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 flex items-center gap-2">
+                <span className="text-white font-bold italic text-4xl">Portfolio</span>
                 <span className="text-white text-xs align-top">®</span>
             </div>
 

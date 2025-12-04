@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import {
     ChevronLeft,
@@ -73,18 +73,51 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeMenu, setActiveMenu] = useState<'file' | 'view' | 'tools' | 'help' | null>(null);
     const [showBrowser, setShowBrowser] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+
+    // Reset progress when browser is hidden
+    useEffect(() => {
+        if (!showBrowser) {
+            setIsLoading(false);
+            setProgress(0);
+        }
+    }, [showBrowser]);
+
+    // Simulate progress when loading
+    useEffect(() => {
+        if (isLoading) {
+            setProgress(0);
+            const interval = setInterval(() => {
+                setProgress(prev => {
+                    if (prev >= 90) {
+                        clearInterval(interval);
+                        return 90;
+                    }
+                    return prev + 10;
+                });
+            }, 100);
+            return () => clearInterval(interval);
+        }
+    }, [isLoading, currentIndex]); // Reset on index change too if loading
 
     const nextProject = () => {
-        if (showBrowser) return;
-        setCurrentIndex((prev) => (prev + 1) % projects.length);
+        if (currentIndex < projects.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+            if (showBrowser) setIsLoading(true);
+        }
     };
 
     const prevProject = () => {
-        if (showBrowser) {
-            setShowBrowser(false);
-            return;
+        if (currentIndex > 0) {
+            setCurrentIndex(prev => prev - 1);
+            if (showBrowser) setIsLoading(true);
         }
-        setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    };
+
+    const handleGo = () => {
+        setShowBrowser(true);
+        setIsLoading(true);
     };
 
     const currentProject = projects[currentIndex];
@@ -203,12 +236,21 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
             {/* Address Bar */}
             <div className="flex items-center gap-2 px-2 py-1 bg-[#ECE9D8] border-b border-[#D4D0C8] shadow-[0_1px_0_#fff]">
                 <span className="text-gray-500 text-[11px]">Address</span>
-                <div className="flex-1 bg-white border border-[#7F9DB9] flex items-center px-1 h-[22px] shadow-[inset_1px_1px_1px_rgba(0,0,0,0.1)]">
-                    <Image src="/icons/internet-explorer.png" alt="IE" width={14} height={14} className="mr-2" />
-                    <span className="text-black text-[11px]">{currentProject.id}</span>
+                <div className="flex-1 bg-white border border-[#7F9DB9] flex items-center px-1 h-[22px] shadow-[inset_1px_1px_1px_rgba(0,0,0,0.1)] relative overflow-hidden">
+                    {/* Progress Bar */}
+                    {isLoading && (
+                        <div
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#316AC5] to-[#98B4E2] opacity-30 transition-all duration-200 ease-out"
+                            style={{ width: `${progress}%` }}
+                        />
+                    )}
+                    <div className="relative z-10 flex items-center w-full">
+                        <Image src="/icons/internet-explorer.png" alt="IE" width={14} height={14} className="mr-2" />
+                        <span className="text-black text-[11px]">{currentProject.id}</span>
+                    </div>
                 </div>
                 <button
-                    onClick={() => setShowBrowser(true)}
+                    onClick={handleGo}
                     className="flex items-center gap-1 px-2 h-[22px] bg-[#ECE9D8] border border-[#D4D0C8] hover:bg-white/50 rounded-sm active:border-gray-400 active:shadow-inner"
                 >
                     <div className="relative w-4 h-4">
@@ -226,6 +268,10 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
                         className="w-full h-full border-none"
                         title={currentProject.title}
                         sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        onLoad={() => {
+                            setProgress(100);
+                            setTimeout(() => setIsLoading(false), 200);
+                        }}
                     />
                 </div>
             ) : (
@@ -267,7 +313,7 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
                                     </div>
 
                                     <button
-                                        onClick={() => setShowBrowser(true)}
+                                        onClick={handleGo}
                                         className={`flex items-center gap-2 font-medium text-sm group transition-colors duration-300 ${isDarkMode ? 'text-[#E5E5E5] hover:text-white' : 'text-gray-700 hover:text-black'}`}
                                     >
                                         Check Live Site

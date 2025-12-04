@@ -19,14 +19,14 @@ export default function Notification({ onClose, onLinkClick }: NotificationProps
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-1 right-1 w-4 h-4 bg-transparent hover:bg-[#D4D4D4] rounded-sm flex items-center justify-center border border-transparent hover:border-gray-400"
+                    className="absolute top-1 right-1 w-4 h-4 bg-transparent hover:bg-[#FF0000] rounded-sm flex items-center justify-center border border-transparent hover:border-white group transition-colors"
                 >
-                    <X size={12} className="text-gray-600" />
+                    <X size={12} className="text-gray-600 group-hover:text-white" />
                 </button>
 
                 <div className="flex items-start gap-2">
-                    <div className="relative w-4 h-4 mt-0.5 shrink-0">
-                        <Image src="/icons/info.png" alt="Info" fill className="object-contain" />
+                    <div className="relative w-4 h-4 flex-shrink-0">
+                        <Image src="/icons/info.png" alt="Info" fill className="object-contain" sizes="16px" />
                     </div>
                     <div className="flex flex-col text-xs text-[#000000] leading-tight">
                         <span className="font-bold">Welcome to Kundan XP</span>
@@ -40,7 +40,7 @@ export default function Notification({ onClose, onLinkClick }: NotificationProps
                     </div>
                 </div>
                 {/* Arrow Pointer */}
-                <div className="absolute -bottom-[6px] right-8 w-3 h-3 bg-[#FFFFE1] border-b border-r border-black transform rotate-45"></div>
+                <div className="absolute -bottom-[6px] right-[145px] w-3 h-3 bg-[#FFFFE1] border-b border-r border-black transform rotate-45"></div>
             </div>
         </div>
     );

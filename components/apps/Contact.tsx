@@ -109,76 +109,61 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
 
             {/* Toolbar */}
             <div className="flex items-center gap-1 px-2 py-1 border-b border-[#D1D1D1] bg-[#ECE9D8]">
-                {/* Send Message */}
-                <button
-                    className="flex items-center gap-1 group hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm"
-                    onClick={handleSend}
-                >
-                    <div className="flex flex-col items-center justify-center min-w-[50px]">
+                <div className="flex items-center gap-1">
+                    <button
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm group"
+                        onClick={handleSend}
+                    >
                         <div className="relative w-[22px] h-[22px] mb-0.5">
-                            <Image src="/icons/Send-message.png" alt="Send" fill className="object-contain" />
+                            <Image src="/icons/Send-message.png" alt="Send" fill className="object-contain" sizes="22px" />
                         </div>
                         <span className="text-[10px] text-[#444] group-active:translate-y-[1px]">Send</span>
-                    </div>
-                </button>
-
-                {/* New Message */}
-                <button
-                    className={`flex items-center gap-1 group ${isFormDirty ? 'hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm' : 'opacity-50 cursor-default'}`}
-                    onClick={handleNewMessage}
-                    disabled={!isFormDirty}
-                >
-                    <div className="flex flex-col items-center justify-center min-w-[50px]">
+                    </button>
+                    <button
+                        className={`flex flex-col items-center justify-center w-[50px] h-[50px] ${isFormDirty ? 'hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm' : 'opacity-50 cursor-default'}`}
+                        onClick={handleNewMessage}
+                        disabled={!isFormDirty}
+                    >
                         <div className="relative w-[22px] h-[22px] mb-0.5">
-                            <Image src="/icons/new-message.png" alt="New" fill className="object-contain" />
+                            <Image src="/icons/new-message.png" alt="New" fill className="object-contain" sizes="22px" />
                         </div>
                         <span className="text-[10px] text-[#444] group-active:translate-y-[1px]">New</span>
-                    </div>
-                </button>
+                    </button>
 
-                {/* Separator */}
-                <div className="w-[1px] h-8 bg-[#D1D1D1] mx-1" />
+                    <div className="w-[1px] h-8 bg-[#D1D1D1] mx-1" />
 
-                {/* Cut (Disabled) */}
-                <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
-                    <div className="relative w-[18px] h-[18px] mb-0.5">
-                        <Image src="/icons/Cut.png" alt="Cut" fill className="object-contain" />
+                    <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
+                        <div className="relative w-[18px] h-[18px] mb-0.5">
+                            <Image src="/icons/Cut.png" alt="Cut" fill className="object-contain" sizes="18px" />
+                        </div>
+                        <span className="text-[10px] text-[#444]">Cut</span>
                     </div>
-                    <span className="text-[10px] text-[#444]">Cut</span>
+                    <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
+                        <div className="relative w-[18px] h-[18px] mb-0.5">
+                            <Image src="/icons/Copy.png" alt="Copy" fill className="object-contain" sizes="18px" />
+                        </div>
+                        <span className="text-[10px] text-[#444]">Copy</span>
+                    </div>
+                    <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
+                        <div className="relative w-[18px] h-[18px] mb-0.5">
+                            <Image src="/icons/Paste.png" alt="Paste" fill className="object-contain" sizes="18px" />
+                        </div>
+                        <span className="text-[10px] text-[#444]">Paste</span>
+                    </div>
+
+                    <div className="w-[1px] h-8 bg-[#D1D1D1] mx-1" />
+
+                    <button
+                        className="flex flex-col items-center justify-center px-2 py-0.5 hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm transition-colors min-w-[50px] group"
+                        onClick={() => window.open('https://www.linkedin.com/in/kundangowda-n-363a50229/', '_blank')}
+                    >
+                        <div className="relative w-[22px] h-[22px] mb-0.5">
+                            <Image src="/icons/linkedin.svg" alt="LinkedIn" fill className="object-contain" sizes="22px" />
+                        </div>
+                        <span className="text-[10px] text-black group-active:translate-y-[1px]">LinkedIn</span>
+                    </button>
                 </div>
-
-                {/* Copy (Disabled) */}
-                <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
-                    <div className="relative w-[18px] h-[18px] mb-0.5">
-                        <Image src="/icons/Copy.png" alt="Copy" fill className="object-contain" />
-                    </div>
-                    <span className="text-[10px] text-[#444]">Copy</span>
-                </div>
-
-                {/* Paste (Disabled) */}
-                <div className="flex flex-col items-center justify-center px-1 opacity-50 cursor-default min-w-[30px]">
-                    <div className="relative w-[18px] h-[18px] mb-0.5">
-                        <Image src="/icons/Paste.png" alt="Paste" fill className="object-contain" />
-                    </div>
-                    <span className="text-[10px] text-[#444]">Paste</span>
-                </div>
-
-                {/* Separator */}
-                <div className="w-[1px] h-8 bg-[#D1D1D1] mx-1" />
-
-                {/* LinkedIn (Active) */}
-                <button
-                    className="flex flex-col items-center justify-center px-2 py-0.5 hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm transition-colors min-w-[50px] group"
-                    onClick={() => window.open('https://www.linkedin.com/in/kundangowda-n-363a50229/', '_blank')}
-                >
-                    <div className="relative w-[22px] h-[22px] mb-0.5">
-                        <Image src="/icons/linkedin.svg" alt="LinkedIn" fill className="object-contain" />
-                    </div>
-                    <span className="text-[10px] text-black group-active:translate-y-[1px]">LinkedIn</span>
-                </button>
             </div>
-
-            {/* Form Area */}
             <div className="flex-1 flex flex-col p-3 gap-3 bg-[#ECE9D8]">
                 {/* Header Fields */}
                 <div className="flex flex-col gap-2 relative">

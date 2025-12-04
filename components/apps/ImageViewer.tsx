@@ -153,56 +153,54 @@ export default function ImageViewer({ onClose, onMinimize, onMaximize }: ImageVi
             {/* Footer Controls */}
             <div className="h-[50px] bg-[#ECE9D8] border-t border-white flex items-center justify-center relative">
                 {/* Navigation Buttons */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1">
                     <button
                         onClick={handlePrev}
-                        className="flex items-center gap-1 group active:translate-y-[1px]"
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     >
-                        <div className="relative w-8 h-8">
-                            <Image src="/icons/Back.png" alt="Back" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px] mb-0.5 opacity-50 group-hover:opacity-100">
+                            <Image src="/icons/Back.png" alt="Back" fill className="object-contain" sizes="24px" />
                         </div>
-                        <span className="font-bold text-[#444]">Back</span>
+                        <span className="text-[11px] text-[#000000] group-hover:text-[#000000]">Prev</span>
                     </button>
-
                     <button
                         onClick={handleNext}
-                        className="flex items-center gap-1 group active:translate-y-[1px]"
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     >
-                        <span className="font-bold text-[#444]">Next</span>
-                        <div className="relative w-8 h-8">
-                            <Image src="/icons/Forward.png" alt="Next" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px] mb-0.5 opacity-50 group-hover:opacity-100">
+                            <Image src="/icons/Forward.png" alt="Next" fill className="object-contain" sizes="24px" />
                         </div>
+                        <span className="text-[11px] text-[#000000] group-hover:text-[#000000]">Next</span>
                     </button>
-                </div>
 
-                {/* Tools */}
-                <div className="absolute right-4 flex items-center gap-2">
+                    <div className="w-[1px] h-[40px] bg-[#D6D6D6] mx-1" />
+
                     <button
                         onClick={handleZoom}
-                        className="p-1 hover:bg-white/50 rounded-sm border border-transparent hover:border-[#D4D0C8] active:translate-y-[1px]"
-                        title={`Zoom ${Math.round(zoomLevel * 100)}%`}
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     >
-                        <div className="relative w-5 h-5">
-                            <Image src="/icons/Search.png" alt="Zoom" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px] mb-0.5">
+                            <Image src="/icons/Search.png" alt="Zoom" fill className="object-contain" sizes="24px" />
                         </div>
+                        <span className="text-[11px] text-[#000000]">Zoom</span>
                     </button>
                     <button
                         onClick={handlePrint}
-                        className="p-1 hover:bg-white/50 rounded-sm border border-transparent hover:border-[#D4D0C8] active:translate-y-[1px]"
-                        title="Print"
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     >
-                        <div className="relative w-5 h-5">
-                            <Image src="/icons/Printer.png" alt="Print" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px] mb-0.5">
+                            <Image src="/icons/Printer.png" alt="Print" fill className="object-contain" sizes="24px" />
                         </div>
+                        <span className="text-[11px] text-[#000000]">Print</span>
                     </button>
                     <button
                         onClick={handleSave}
-                        className="p-1 hover:bg-white/50 rounded-sm border border-transparent hover:border-[#D4D0C8] active:translate-y-[1px]"
-                        title="Save"
+                        className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
                     >
-                        <div className="relative w-5 h-5">
-                            <Image src="/icons/Save.png" alt="Save" fill className="object-contain" />
+                        <div className="relative w-[24px] h-[24px] mb-0.5">
+                            <Image src="/icons/Save.png" alt="Save" fill className="object-contain" sizes="24px" />
                         </div>
+                        <span className="text-[11px] text-[#000000]">Save</span>
                     </button>
                 </div>
 
