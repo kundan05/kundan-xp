@@ -10,7 +10,7 @@ export default function LoadingScreen() {
                 <div className="flex flex-col items-center md:items-end">
                     <div className="flex flex-col items-center md:items-end">
                         <div className="relative w-24 h-24 md:w-60 md:h-60 mb-2 md:mr-4">
-                            <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" sizes="(max-width: 768px) 96px, 240px" />
+                            <Image src="/icons/xp-flag-black.png" alt="XP Logo" fill className="object-contain" sizes="(max-width: 768px) 96px, 240px" />
                         </div>
                     </div>
                     <div className="flex flex-col items-center">

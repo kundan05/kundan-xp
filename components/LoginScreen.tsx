@@ -57,7 +57,7 @@ export default function LoginScreen({ onLogin, onRestart, onShutdown }: LoginScr
                                     <h1 className="text-white text-[42px] md:text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-start md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
                                         Kundan<span className="text-[#E57E31] text-[24px] md:text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
                                     </h1>
-                                    <p className="text-white text-lg md:text-1xl font-bold mt-0.2 tracking-wide md:mr-16" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
+                                    <p className="text-white text-sm md:text-1xl font-bold mt-0.2 tracking-wide md:mr-20" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
                                 </div>
                             </div>
                             <p className="hidden md:block text-white text-1xl font-bold mb-4 mt-4" style={{ fontFamily: 'Tahoma, sans-serif' }}>To begin, click on KundanGowda N to log in</p>
