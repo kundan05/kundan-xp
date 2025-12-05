@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 
-import OpenLinkDialog from './OpenLinkDialog';
+
 
 interface StartMenuProps {
     isOpen: boolean;
@@ -10,44 +10,30 @@ interface StartMenuProps {
     onItemClick: (id: string) => void;
     onLogOff: () => void;
     onTurnOff: () => void;
+    onOpenLink: (icon: string, title: string, url: string) => void;
 }
 
-export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTurnOff }: StartMenuProps) {
+export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTurnOff, onOpenLink }: StartMenuProps) {
     const [showAllPrograms, setShowAllPrograms] = React.useState(false);
     const [showRecent, setShowRecent] = React.useState(false);
-    const [dialogOpen, setDialogOpen] = React.useState(false);
-    const [selectedLink, setSelectedLink] = React.useState<{ icon: string; title: string; url: string } | null>(null);
 
     const handleLinkClick = (icon: string, title: string, url: string) => {
-        setSelectedLink({ icon, title, url });
-        setDialogOpen(true);
-    };
-
-    const handleConfirmLink = () => {
-        if (selectedLink) {
-            window.open(selectedLink.url, '_blank');
-        }
-        setDialogOpen(false);
-        setSelectedLink(null);
+        onOpenLink(icon, title, url);
+        onClose(); // Close Start Menu immediately
     };
 
     if (!isOpen) return null;
 
     return (
         <>
-            <OpenLinkDialog
-                isOpen={dialogOpen}
-                icon={selectedLink?.icon || ''}
-                title={selectedLink?.title || ''}
-                url={selectedLink?.url || ''}
-                onConfirm={handleConfirmLink}
-                onCancel={() => setDialogOpen(false)}
-            />
-            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none">
+            {/* Click Outside Overlay */}
+            <div className="fixed inset-0 z-[9997]" onClick={onClose} />
+
+            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
-                <div className="h-[64px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative overflow-hidden">
+                <div className="h-[80px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative">
                     {/* Header Highlight */}
-                    <div className="absolute top-0 left-0 w-full h-[2px] bg-white/30" />
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-white/30 rounded-t-lg" />
 
                     <div className="w-12 h-12 bg-white rounded-[3px] border-[2px] border-white shadow-[0_0_2px_rgba(0,0,0,0.5)] overflow-hidden relative shrink-0">
                         <Image

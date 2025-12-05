@@ -15,7 +15,13 @@ interface MediaPlayerProps {
     onMaximize?: () => void;
 }
 
+const PLAYLIST = [
+    'dQw4w9WgXcQ', // Default (Rick Roll)
+    'gPvnsdmDJ3s'  // YouTube Short
+];
+
 export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPlayerProps) {
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -52,9 +58,9 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
         playerRef.current = new window.YT.Player('youtube-player', {
             height: '100%',
             width: '100%',
-            videoId: 'dQw4w9WgXcQ', // Default video (Rick Roll for demo, or change to user preference)
+            videoId: PLAYLIST[currentVideoIndex],
             playerVars: {
-                'autoplay': 0,
+                'autoplay': 1,
                 'controls': 0,
                 'disablekb': 1,
                 'fs': 0,
@@ -95,6 +101,22 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
 
     const stopProgressTimer = () => {
         if (progressInterval.current) clearInterval(progressInterval.current);
+    };
+
+    // Handle video change
+    useEffect(() => {
+        if (playerRef.current && playerRef.current.loadVideoById) {
+            playerRef.current.loadVideoById(PLAYLIST[currentVideoIndex]);
+            setIsPlaying(true); // Auto-play when switching
+        }
+    }, [currentVideoIndex]);
+
+    const handleNext = () => {
+        setCurrentVideoIndex((prev) => (prev + 1) % PLAYLIST.length);
+    };
+
+    const handlePrev = () => {
+        setCurrentVideoIndex((prev) => (prev - 1 + PLAYLIST.length) % PLAYLIST.length);
     };
 
     const togglePlay = () => {
@@ -234,7 +256,9 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
                     {/* Center Buttons */}
                     <div className="flex items-center gap-3">
                         {/* Prev */}
-                        <button className="w-8 h-8 flex items-center justify-center hover:brightness-125 active:scale-95 transition-transform opacity-80 hover:opacity-100">
+                        <button
+                            onClick={handlePrev}
+                            className="w-8 h-8 flex items-center justify-center hover:brightness-125 active:scale-95 transition-transform opacity-80 hover:opacity-100">
                             <SkipBack size={16} fill="#8EA2C6" color="#8EA2C6" />
                         </button>
 
@@ -263,7 +287,9 @@ export default function MediaPlayer({ onClose, onMinimize, onMaximize }: MediaPl
                         </button>
 
                         {/* Next */}
-                        <button className="w-8 h-8 flex items-center justify-center hover:brightness-125 active:scale-95 transition-transform opacity-80 hover:opacity-100">
+                        <button
+                            onClick={handleNext}
+                            className="w-8 h-8 flex items-center justify-center hover:brightness-125 active:scale-95 transition-transform opacity-80 hover:opacity-100">
                             <SkipForward size={16} fill="#8EA2C6" color="#8EA2C6" />
                         </button>
                     </div>

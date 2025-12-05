@@ -15,7 +15,7 @@ export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, on
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center font-tahoma select-none">
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center font-tahoma select-none">
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/20" onClick={onCancel} />
 

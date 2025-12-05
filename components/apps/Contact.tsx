@@ -5,9 +5,10 @@ interface ContactProps {
     onClose?: () => void;
     onMinimize?: () => void;
     onMaximize?: () => void;
+    onOpenLink?: (icon: string, title: string, url: string) => void;
 }
 
-export default function Contact({ onClose, onMinimize, onMaximize }: ContactProps) {
+export default function Contact({ onClose, onMinimize, onMaximize, onOpenLink }: ContactProps) {
     const [formData, setFormData] = useState({
         from: '',
         subject: '',
@@ -39,10 +40,18 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
         setFormData({ from: '', subject: '', body: '' });
     };
 
+    const handleLinkedInClick = () => {
+        if (onOpenLink) {
+            onOpenLink('/icons/linkedin.svg', 'LinkedIn', 'https://www.linkedin.com/in/kundangowda-n-363a50229/');
+        } else {
+            window.open('https://www.linkedin.com/in/kundangowda-n-363a50229/', '_blank');
+        }
+    };
+
     return (
-        <div className="flex flex-col h-full bg-[#ECE9D8] font-tahoma select-none" ref={menuRef}>
+        <div className="flex flex-col h-full bg-[#F5F5F5] font-tahoma select-none" ref={menuRef}>
             {/* Menu Bar */}
-            <div className="flex items-center justify-between px-1 py-0.5 bg-[#ECE9D8] border-b border-[#D1D1D1] text-[11px] relative z-20">
+            <div className="flex items-center justify-between px-1 py-0.5 bg-[#F5F5F5] border-b border-[#D1D1D1] text-[11px] relative z-20">
                 <div className="flex items-center">
                     <div className="relative">
                         <button
@@ -108,7 +117,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
             </div>
 
             {/* Toolbar */}
-            <div className="flex items-center gap-1 px-2 py-1 border-b border-[#D1D1D1] bg-[#ECE9D8]">
+            <div className="flex items-center gap-1 px-2 py-1 border-b border-[#D1D1D1] bg-[#F5F5F5]">
                 <div className="flex items-center gap-1">
                     <button
                         className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm group"
@@ -155,7 +164,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
 
                     <button
                         className="flex flex-col items-center justify-center px-2 py-0.5 hover:bg-[#D1D1D1]/50 active:bg-[#D1D1D1] rounded-sm transition-colors min-w-[50px] group"
-                        onClick={() => window.open('https://www.linkedin.com/in/kundangowda-n-363a50229/', '_blank')}
+                        onClick={handleLinkedInClick}
                     >
                         <div className="relative w-[22px] h-[22px] mb-0.5">
                             <Image src="/icons/linkedin.svg" alt="LinkedIn" fill className="object-contain" sizes="22px" />
@@ -164,7 +173,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
                     </button>
                 </div>
             </div>
-            <div className="flex-1 flex flex-col p-3 gap-3 bg-[#ECE9D8]">
+            <div className="flex-1 flex flex-col p-3 gap-3 bg-[#F5F5F5]">
                 {/* Header Fields */}
                 <div className="flex flex-col gap-2 relative">
                     {/* Horizontal Lines Background */}
@@ -233,7 +242,7 @@ export default function Contact({ onClose, onMinimize, onMaximize }: ContactProp
             </div>
 
             {/* Status Bar */}
-            <div className="h-[22px] border-t border-[#D1D1D1] bg-[#ECE9D8] flex items-center px-2">
+            <div className="h-[22px] border-t border-[#D1D1D1] bg-[#F5F5F5] flex items-center px-2">
                 <span className="text-[11px] text-black">Compose a message to Kundan</span>
             </div>
         </div>

@@ -7,9 +7,10 @@ interface AboutMeProps {
     onMinimize?: () => void;
     onMaximize?: () => void;
     onOpenApp?: (id: string) => void;
+    onOpenLink?: (icon: string, title: string, url: string) => void;
 }
 
-export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: AboutMeProps) {
+export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp, onOpenLink }: AboutMeProps) {
     const [isSocialOpen, setIsSocialOpen] = useState(true);
     const [isSkillsOpen, setIsSkillsOpen] = useState(true);
     const [isSoftwareOpen, setIsSoftwareOpen] = useState(true);
@@ -26,10 +27,18 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
         return () => window.removeEventListener('click', handleClickOutside);
     }, []);
 
+    const handleLinkClick = (icon: string, title: string, url: string) => {
+        if (onOpenLink) {
+            onOpenLink(icon, title, url);
+        } else {
+            window.open(url, '_blank');
+        }
+    };
+
     return (
         <div className="flex flex-col h-full w-full bg-[#ECE9D8] font-tahoma text-xs" onClick={(e) => e.stopPropagation()}>
             {/* Menu Bar */}
-            <div className="flex items-center px-1 py-0.5 bg-[#ECE9D8] border-b border-white/50 relative z-50">
+            <div className="flex items-center px-1 py-0.5 bg-[#F5F5F5] border-b border-white/50 relative z-50">
                 <div className="flex gap-2 px-2">
                     <div className="relative">
                         <span
@@ -83,7 +92,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
             </div>
 
             {/* Toolbar */}
-            <div className="flex items-center gap-1 px-2 py-1 bg-[#ECE9D8] border-b border-[#D4D0C8]">
+            <div className="flex items-center gap-1 px-2 py-1 bg-[#F5F5F5] border-b border-[#D4D0C8]">
                 <div className="flex items-center gap-1">
                     <button className="flex items-center gap-1 px-2 py-1 hover:bg-black/5 rounded-[3px] disabled:opacity-50" disabled>
                         <div className="relative w-[20px] h-[20px]">
@@ -131,7 +140,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
             </div>
 
             {/* Address Bar */}
-            <div className="flex items-center gap-2 px-2 py-1 bg-[#ECE9D8] border-b border-[#D4D0C8] shadow-[0_1px_0_#fff]">
+            <div className="flex items-center gap-2 px-2 py-1 bg-[#F5F5F5] border-b border-[#D4D0C8] shadow-[0_1px_0_#fff]">
                 <span className="text-gray-500 text-[11px]">Address</span>
                 <div className="flex-1 bg-white border border-[#7F9DB9] flex items-center px-1 h-[22px] shadow-[inset_1px_1px_1px_rgba(0,0,0,0.1)]">
                     <Image src="/icons/about-custom.png" alt="Icon" width={14} height={14} className="mr-2" />
@@ -165,15 +174,24 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
                                 {/* Grid Pattern */}
 
                                 <div className="relative z-10 flex flex-col gap-1">
-                                    <a href="https://www.linkedin.com/in/kundangowda-n-363a50229/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5">
+                                    <button
+                                        className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5 text-left w-full"
+                                        onClick={() => handleLinkClick('/icons/linkedin.svg', 'LinkedIn', 'https://www.linkedin.com/in/kundangowda-n-363a50229/')}
+                                    >
                                         <Image src="/icons/linkedin.svg" alt="LI" width={14} height={14} /> LinkedIn
-                                    </a>
-                                    <a href="https://github.com/kundan05" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5">
+                                    </button>
+                                    <button
+                                        className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5 text-left w-full"
+                                        onClick={() => handleLinkClick('/icons/github.png', 'Github', 'https://github.com/kundan05')}
+                                    >
                                         <Image src="/icons/github.png" alt="GH" width={14} height={14} /> Github
-                                    </a>
-                                    <a href="https://www.instagram.com/kundan_gowda_/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5">
+                                    </button>
+                                    <button
+                                        className="flex items-center gap-2 hover:underline hover:text-blue-600 cursor-pointer py-0.5 text-left w-full"
+                                        onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/kundan_gowda_/')}
+                                    >
                                         <Image src="/icons/instagram.png" alt="IG" width={14} height={14} /> Instagram
-                                    </a>
+                                    </button>
 
                                 </div>
                             </div>
@@ -283,7 +301,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp }: 
             </div>
 
             {/* Status Bar */}
-            <div className="h-6 border-t border-[#D1D1D1] bg-[#ECE9D8] flex items-center px-2 text-xs text-gray-600 shadow-[inset_0_1px_0_#fff]">
+            <div className="h-6 border-t border-[#D1D1D1] bg-[#F5F5F5] flex items-center px-2 text-xs text-gray-600 shadow-[inset_0_1px_0_#fff]">
                 Learn more about Kundan
             </div>
         </div>

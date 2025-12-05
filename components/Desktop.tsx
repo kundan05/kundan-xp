@@ -22,6 +22,8 @@ import ShutdownDialog from './ShutdownDialog';
 import LogOffDialog from './LogOffDialog';
 import Notification from './Notification';
 import LoadingScreen from './LoadingScreen';
+import OpenLinkDialog from './OpenLinkDialog';
+import MobileRestrictionDialog from './MobileRestrictionDialog';
 
 
 type AppState = 'booting' | 'login' | 'desktop' | 'shutdown_dialog' | 'powered_off';
@@ -158,6 +160,7 @@ export default function Desktop() {
 
     const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
     const [showShutdownDialog, setShowShutdownDialog] = useState(false);
+    const [showMobileRestriction, setShowMobileRestriction] = useState(false);
     const [showLogOffDialog, setShowLogOffDialog] = useState(false);
     const [maxZIndex, setMaxZIndex] = useState(10);
     const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
@@ -165,6 +168,23 @@ export default function Desktop() {
 
     const [showNotification, setShowNotification] = useState(false);
     const [isCRTEnabled, setIsCRTEnabled] = useState(false);
+    const [linkDialogState, setLinkDialogState] = useState<{ isOpen: boolean; icon: string; title: string; url: string }>({
+        isOpen: false,
+        icon: '',
+        title: '',
+        url: ''
+    });
+
+    const handleOpenLink = (icon: string, title: string, url: string) => {
+        setLinkDialogState({ isOpen: true, icon, title, url });
+    };
+
+    const handleConfirmLink = () => {
+        if (linkDialogState.url) {
+            window.open(linkDialogState.url, '_blank');
+        }
+        setLinkDialogState(prev => ({ ...prev, isOpen: false }));
+    };
 
     const toggleCRT = () => setIsCRTEnabled(!isCRTEnabled);
 
@@ -207,6 +227,13 @@ export default function Desktop() {
     }, [appState]);
 
     const handleOpenWindow = (id: string) => {
+        // Mobile restriction for Media Player
+        if (id === 'media-player' && window.innerWidth < 768) {
+            setShowMobileRestriction(true);
+            setIsStartMenuOpen(false);
+            return;
+        }
+
         setWindows(prev => prev.map(w => {
             if (w.id === id) {
                 return { ...w, isOpen: true, isMinimized: false, zIndex: maxZIndex + 1 };
@@ -329,7 +356,7 @@ export default function Desktop() {
     }
 
     if (appState === 'login') {
-        return <LoginScreen onLogin={handleLogin} onShutdown={handleRestart} />;
+        return <LoginScreen onLogin={handleLogin} onRestart={handleRestart} onShutdown={handleShutdown} />;
     }
 
     if (appState === 'powered_off') {
@@ -342,8 +369,7 @@ export default function Desktop() {
 
     return (
         <div
-            className="relative w-full h-screen overflow-hidden bg-xp-blue select-none bg-cover bg-center"
-            style={{ backgroundImage: 'url(/wallpaper-custom.png)' }}
+            className="relative w-full h-screen overflow-hidden bg-xp-blue select-none bg-cover bg-center bg-[url('/wallpaper-mobile.jpg')] md:bg-[url('/wallpaper-custom.png')]"
             onClick={() => setIsStartMenuOpen(false)}
         >
             {/* Desktop Icons */}
@@ -381,12 +407,21 @@ export default function Desktop() {
                                 onClose={() => handleCloseWindow('contact')}
                                 onMinimize={() => handleMinimizeWindow('contact')}
                                 onMaximize={() => handleMaximizeWindow('contact')}
+                                onOpenLink={handleOpenLink}
                             />
                         ) : window.id === 'about' ? (
                             <AboutMe
                                 onClose={() => handleCloseWindow('about')}
                                 onMinimize={() => handleMinimizeWindow('about')}
                                 onMaximize={() => handleMaximizeWindow('about')}
+                                onOpenApp={handleOpenWindow}
+                                onOpenLink={handleOpenLink}
+                            />
+                        ) : window.id === 'resume' ? (
+                            <Resume
+                                onClose={() => handleCloseWindow('resume')}
+                                onMinimize={() => handleMinimizeWindow('resume')}
+                                onMaximize={() => handleMaximizeWindow('resume')}
                                 onOpenApp={handleOpenWindow}
                             />
                         ) : (
@@ -404,6 +439,7 @@ export default function Desktop() {
                     onItemClick={handleOpenWindow}
                     onLogOff={handleLogOff}
                     onTurnOff={handleTurnOffRequest}
+                    onOpenLink={handleOpenLink}
                 />
             </div>
 
@@ -443,6 +479,23 @@ export default function Desktop() {
                     onSwitchUser={confirmSwitchUser}
                 />
             )}
+
+            {/* Open Link Dialog */}
+            <OpenLinkDialog
+                isOpen={linkDialogState.isOpen}
+                icon={linkDialogState.icon}
+                title={linkDialogState.title}
+                url={linkDialogState.url}
+                onConfirm={handleConfirmLink}
+                onCancel={() => setLinkDialogState(prev => ({ ...prev, isOpen: false }))}
+            />
+
+            {/* Mobile Restriction Dialog */}
+            <MobileRestrictionDialog
+                isOpen={showMobileRestriction}
+                onClose={() => setShowMobileRestriction(false)}
+            />
+
             {/* Notification */}
             {showNotification && (
                 <Notification onClose={() => setShowNotification(false)} onLinkClick={handleOpenWindow} />

@@ -81,7 +81,7 @@ export default function Taskbar({
                                 className="object-contain"
                             />
                         </div>
-                        <span className="truncate hidden sm:inline">{w.title}</span>
+                        <span className="truncate">{w.title}</span>
                     </button>
                 ))}
             </div>

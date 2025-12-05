@@ -1,14 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
+import ShutdownDialog from './ShutdownDialog';
 
 
 interface LoginScreenProps {
     onLogin: () => void;
+    onRestart: () => void;
     onShutdown: () => void;
 }
 
-export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
+export default function LoginScreen({ onLogin, onRestart, onShutdown }: LoginScreenProps) {
     const [isLoggingIn, setIsLoggingIn] = React.useState(false);
+    const [showShutdownDialog, setShowShutdownDialog] = React.useState(false);
 
     const handleLoginClick = () => {
         setIsLoggingIn(true);
@@ -18,7 +21,9 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
     return (
         <div className="w-full h-screen md:h-screen h-[100dvh] bg-[#003399] flex flex-col relative overflow-hidden font-sans">
             {/* Top Blue Bar */}
-            <div className="h-[80px] w-full bg-[#003399] border-b-[2px] border-[#E57E31] shadow-md z-20"></div>
+            <div className="h-[80px] w-full bg-[#003399] relative z-20 shadow-[0_3px_10px_rgba(0,0,0,0.3)]">
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+            </div>
 
             {/* Main Content Area - Grid Background */}
             <div className="flex-1 w-full relative flex items-center justify-center overflow-hidden">
@@ -45,19 +50,21 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                         {/* Left Side - Logo */}
                         <div className="w-full md:w-1/2 md:pr-12 flex flex-col items-center md:items-end text-center md:text-right py-8 md:py-0">
                             <div className="flex flex-col items-center md:items-end">
-                                <div className="relative w-35 h-25 mb-0.1 md:mr-4">
+                                <div className="relative w-40 h-30 mb-0.1 md:mr-0">
                                     <Image src="/icons/xp-logo-final.png" alt="XP Logo" fill className="object-contain" sizes="(max-width: 768px) 150px, 250px" />
                                 </div>
-                                <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-center md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
-                                    Kundan<span className="text-[#E57E31] text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
-                                </h1>
-                                <p className="text-white text-1xl font-normal mt-0.2 tracking-wide md:mr-18" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
+                                <div className="flex flex-col items-start md:items-end">
+                                    <h1 className="text-white text-[54px] font-bold tracking-tighter drop-shadow-md flex items-start justify-start md:justify-end gap-1 leading-none" style={{ fontFamily: '"Segoe UI", sans-serif' }}>
+                                        Kundan<span className="text-[#E57E31] text-[32px] font-bold mt-1 italic" style={{ fontFamily: '"Segoe UI", sans-serif' }}>xp</span>
+                                    </h1>
+                                    <p className="text-white text-1xl font-bold mt-0.2 tracking-wide md:mr-16" style={{ fontFamily: 'Tahoma, sans-serif' }}>Software Developer</p>
+                                </div>
                             </div>
-                            <p className="hidden md:block text-white text-1xl font-normal mb-4 mt-4" style={{ fontFamily: 'Tahoma, sans-serif' }}>To begin, click on KundanGowda N to log in</p>
+                            <p className="hidden md:block text-white text-1xl font-bold mb-4 mt-4" style={{ fontFamily: 'Tahoma, sans-serif' }}>To begin, click on KundanGowda N to log in</p>
                         </div>
 
                         {/* Mobile Horizontal Divider */}
-                        <div className="block md:hidden w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent my-4"></div>
+                        <div className="block md:hidden w-full h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent my-6"></div>
 
                         {/* Right Side - User List */}
                         <div className="w-full md:w-1/2 md:pl-12 flex flex-col items-center md:items-start py-8 md:py-0">
@@ -85,12 +92,13 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
             </div>
 
             {/* Bottom Bar */}
-            <div className="h-[80px] w-full bg-[#003399] border-t-[2px] border-[#E57E31] flex items-center justify-center md:justify-between px-4 md:px-12 z-20">
+            <div className="h-[80px] w-full bg-[#003399] relative flex items-center justify-center md:justify-between px-4 md:px-12 z-20">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#E57E31] to-transparent"></div>
                 {!isLoggingIn && (
                     <>
                         <div className="hidden md:flex items-center gap-3">
                             <button
-                                onClick={onShutdown}
+                                onClick={() => setShowShutdownDialog(true)}
                                 className="flex items-center gap-3 text-white hover:text-white/80 transition-colors group"
                             >
                                 <div className="w-9 h-9 bg-gradient-to-br from-[#3B9D00] to-[#2D7600] rounded-[3px] border border-white/40 flex items-center justify-center shadow-md group-hover:brightness-110 relative">
@@ -100,7 +108,7 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                             </button>
                         </div>
 
-                        <div className="hidden md:block text-white/60 text-sm max-w-md text-right leading-tight font-medium" style={{ fontFamily: 'Tahoma, sans-serif' }}>
+                        <div className="hidden md:block text-white/100 text-sm max-w-md text-right leading-tight font-medium" style={{ fontFamily: 'Tahoma, sans-serif' }}>
                             After you log on, the system's yours to explore.<br />
                             Every detail has been designed with a purpose.
                         </div>
@@ -112,6 +120,15 @@ export default function LoginScreen({ onLogin, onShutdown }: LoginScreenProps) {
                     </>
                 )}
             </div>
+
+            {/* Shutdown Dialog */}
+            {showShutdownDialog && (
+                <ShutdownDialog
+                    onCancel={() => setShowShutdownDialog(false)}
+                    onRestart={onRestart}
+                    onShutdown={onShutdown}
+                />
+            )}
         </div>
     );
 }

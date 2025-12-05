@@ -5,22 +5,17 @@ interface ResumeProps {
     onClose?: () => void;
     onMinimize?: () => void;
     onMaximize?: () => void;
+    onOpenApp?: (id: string) => void;
 }
 
-export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps) {
+export default function Resume({ onClose, onMinimize, onMaximize, onOpenApp }: ResumeProps) {
     const [zoomLevel, setZoomLevel] = useState(1);
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [activeMenu, setActiveMenu] = useState<'file' | 'view' | null>(null);
 
     const handleZoom = () => {
-        // Cycle through zoom levels: 50% -> 75% -> 100% -> 125% -> 150% -> 50%
-        setZoomLevel(prev => {
-            if (prev >= 1.5) return 0.5;
-            if (prev === 0.5) return 0.75;
-            if (prev === 0.75) return 1;
-            if (prev === 1) return 1.25;
-            return 1.5;
-        });
+        // Toggle between Fit (1) and Zoomed (1.5)
+        setZoomLevel(prev => prev === 1 ? 1.7 : 1);
     };
 
     const handleSave = () => {
@@ -33,13 +28,29 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
     };
 
     const handlePrint = () => {
-        if (iframeRef.current && iframeRef.current.contentWindow) {
-            iframeRef.current.contentWindow.print();
-        }
+        // Create a hidden iframe to print the PDF
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = '/KundanGowda_Resume.pdf';
+        document.body.appendChild(iframe);
+
+        iframe.onload = () => {
+            if (iframe.contentWindow) {
+                iframe.contentWindow.print();
+            }
+            // Cleanup after a delay to allow print dialog to open
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 1000);
+        };
     };
 
     const handleContact = () => {
-        window.location.href = 'mailto:kundangowda.n@gmail.com';
+        if (onOpenApp) {
+            onOpenApp('contact');
+        } else {
+            window.location.href = 'mailto:kundangowda.n@gmail.com';
+        }
     };
 
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -81,9 +92,9 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
     };
 
     return (
-        <div className="flex flex-col h-full bg-[#ECE9D8] select-none" onClick={() => setActiveMenu(null)}>
+        <div className="flex flex-col h-full bg-[#F5F5F5] select-none" onClick={() => setActiveMenu(null)}>
             {/* Menu Bar */}
-            <div className="flex items-center px-1 py-0.5 bg-[#ECE9D8] border-b border-[#D1D1D1] text-[11px] font-tahoma relative">
+            <div className="flex items-center px-1 py-0.5 bg-[#F5F5F5] border-b border-[#D1D1D1] text-[11px] font-tahoma relative">
                 <div className="relative">
                     <button
                         onClick={(e) => { e.stopPropagation(); setActiveMenu(activeMenu === 'file' ? null : 'file'); }}
@@ -132,42 +143,46 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
             </div>
 
             {/* Toolbar */}
-            <div className="flex items-center gap-1 p-1 border-b border-[#D1D1D1] bg-[#ECE9D8] shadow-[0_1px_0_#fff]">
+            <div className="flex items-center gap-1 p-1 border-b border-[#D1D1D1] bg-[#F5F5F5] shadow-[0_1px_0_#fff]">
                 <button
                     onClick={handleZoom}
-                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
+                    className={`flex items-center gap-1 px-2 h-[36px] border rounded-[3px] group transition-all duration-75
+                        ${zoomLevel > 1
+                            ? 'bg-black/10 border-gray-400 shadow-inner'
+                            : 'border-transparent hover:bg-black/5 active:bg-black/10'
+                        }`}
                 >
-                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                    <div className="relative w-[24px] h-[24px]">
                         <Image src="/icons/Search.png" alt="Zoom" fill className="object-contain" sizes="24px" />
                     </div>
                     <span className="text-[11px] text-[#000000]">Zoom</span>
                 </button>
                 <button
-                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
+                    className="flex items-center gap-1 px-2 h-[36px] border border-transparent rounded-[3px] group transition-all duration-75 hover:bg-black/5 active:bg-black/10"
                     onClick={handleSave}
                 >
-                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                    <div className="relative w-[24px] h-[24px]">
                         <Image src="/icons/Save.png" alt="Save" fill className="object-contain" sizes="24px" />
                     </div>
                     <span className="text-[11px] text-[#000000]">Save</span>
                 </button>
                 <button
-                    onClick={handlePrint}
-                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
+                    disabled
+                    className="flex items-center gap-1 px-2 h-[36px] border border-transparent rounded-[3px] opacity-50 cursor-not-allowed grayscale"
                 >
-                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                    <div className="relative w-[24px] h-[24px]">
                         <Image src="/icons/Printer.png" alt="Print" fill className="object-contain" sizes="24px" />
                     </div>
-                    <span className="text-[11px] text-[#000000]">Print</span>
+                    <span className="text-[11px] text-[#808080]">Print</span>
                 </button>
 
-                <div className="w-[1px] h-[40px] bg-[#D6D6D6] mx-1" />
+                <div className="w-[1px] h-[36px] bg-[#D6D6D6] mx-1" />
 
                 <button
                     onClick={handleContact}
-                    className="flex flex-col items-center justify-center w-[50px] h-[50px] hover:bg-[#FFE7A2] border border-transparent hover:border-[#D2B47A] rounded-[3px] group"
+                    className="flex items-center gap-1 px-2 h-[36px] border border-transparent rounded-[3px] group transition-all duration-75 hover:bg-black/5 active:bg-black/10"
                 >
-                    <div className="relative w-[24px] h-[24px] mb-0.5">
+                    <div className="relative w-[24px] h-[24px]">
                         <Image src="/icons/outlook.png" alt="Contact" fill className="object-contain" sizes="24px" />
                     </div>
                     <span className="text-[11px] text-[#000000]">Contact Me</span>
@@ -190,7 +205,7 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
 
                 {/* Resume Page Container */}
                 <div
-                    className="relative z-10 transition-transform duration-200 origin-top my-8"
+                    className="relative z-10 transition-transform duration-200 origin-top my-8 w-full flex justify-center"
                     style={{ transform: `scale(${zoomLevel})` }}
                 >
                     {/* Interaction Overlay */}
@@ -202,17 +217,20 @@ export default function Resume({ onClose, onMinimize, onMaximize }: ResumeProps)
                         onMouseLeave={handleMouseLeave}
                     />
 
-                    <iframe
-                        ref={iframeRef}
-                        src="/KundanGowda_Resume.pdf#toolbar=0&navpanes=0"
-                        className="w-[800px] h-[1132px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] pointer-events-none"
-                        title="Resume"
-                    />
+                    <div className="relative w-full max-w-[800px] aspect-[800/1132] pointer-events-none bg-transparent">
+                        <Image
+                            src="/icons/resume-image.png"
+                            alt="Resume"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Status Bar */}
-            <div className="h-6 border-t border-[#D1D1D1] bg-[#ECE9D8] flex items-center px-2 text-[11px] text-gray-600 shadow-[inset_0_1px_0_#fff] gap-2">
+            <div className="h-6 border-t border-[#D1D1D1] bg-[#F5F5F5] flex items-center px-2 text-[11px] text-black shadow-[inset_0_1px_0_#fff] gap-2">
                 <div className="w-[1px] h-3 bg-gray-400"></div>
                 <span>Click to zoom, then drag to view other areas</span>
             </div>

@@ -26,14 +26,14 @@ export default function MusicPlayer() {
                 {/* Left Side - Album Art */}
                 <div className="w-1/2 h-full relative rounded-md overflow-hidden border border-[#3A4E85] shadow-inner bg-black group">
                     <Image
-                        src="/icons/media-player.png" // Placeholder - ideally user provides an image
+                        src="/icons/oppenhimer.jpg" // Placeholder - ideally user provides an image
                         alt="Album Art"
                         fill
                         className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                     />
                     <div className="absolute bottom-0 left-0 w-full bg-black/60 p-2 text-white">
-                        <div className="font-bold text-sm leading-tight">Nu Flow</div>
-                        <div className="text-[10px] text-gray-300">Big Brovaz</div>
+                        <div className="font-bold text-sm leading-tight">Oppenheimer Theme</div>
+                        <div className="text-[10px] text-gray-300">Ludwig Göransson</div>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@ export default function MusicPlayer() {
             </div>
 
             {/* Audio Element */}
-            <audio ref={audioRef} src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop />
+            <audio ref={audioRef} src="/icons/oppenheimer.mp3" loop />
         </div>
     );
 }
