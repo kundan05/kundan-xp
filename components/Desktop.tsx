@@ -132,7 +132,8 @@ export default function Desktop() {
             zIndex: 1,
             content: <MusicPlayer />,
             icon: '/icons/music.png',
-            hasCustomContent: true
+            hasCustomContent: true,
+            allowMobileMaximize: false
         },
         {
             id: 'cmd',

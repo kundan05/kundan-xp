@@ -16,9 +16,10 @@ interface WindowProps {
     isMaximized?: boolean;
     initialWidth?: number;
     initialHeight?: number;
+    allowMobileMaximize?: boolean;
 }
 
-export default function Window({ title, children, isActive, zIndex, icon, onClose, onMinimize, onMaximize, onFocus, hasCustomContent, isMaximized, initialWidth, initialHeight }: WindowProps) {
+export default function Window({ title, children, isActive, zIndex, icon, onClose, onMinimize, onMaximize, onFocus, hasCustomContent, isMaximized, initialWidth, initialHeight, allowMobileMaximize = true }: WindowProps) {
     const [isMobile, setIsMobile] = React.useState(false);
 
     React.useEffect(() => {
@@ -30,7 +31,7 @@ export default function Window({ title, children, isActive, zIndex, icon, onClos
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const effectiveMaximized = isMaximized || isMobile;
+    const effectiveMaximized = isMaximized || (isMobile && allowMobileMaximize);
 
     return (
         <motion.div

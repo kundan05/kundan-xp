@@ -29,7 +29,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
             {/* Click Outside Overlay */}
             <div className="fixed inset-0 z-[9997]" onClick={onClose} />
 
-            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-[480px] max-h-[80vh] bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none" onClick={(e) => e.stopPropagation()}>
+            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-auto bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="h-[80px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative">
                     {/* Header Highlight */}
@@ -262,7 +262,7 @@ interface StartMenuItemProps {
 function StartMenuItem({ icon, label, subLabel, bold, compact, disabled, onClick }: StartMenuItemProps) {
     return (
         <button
-            className={`w-full flex items-center gap-2 px-2 ${compact ? 'py-[2px]' : 'py-1.5'} ${disabled ? 'opacity-50 cursor-default grayscale' : 'hover:bg-[#2F71CD] hover:text-white group transition-colors'} text-left`}
+            className={`w-full flex items-center gap-2 px-2 ${compact ? 'py-[2px]' : 'py-1 md:py-1.5'} ${disabled ? 'opacity-50 cursor-default grayscale' : 'hover:bg-[#2F71CD] hover:text-white group transition-colors'} text-left`}
             onClick={disabled ? undefined : onClick}
             disabled={disabled}
         >
@@ -294,7 +294,7 @@ interface StartMenuLinkProps {
 function StartMenuLink({ icon, label, bold, hasArrow, onClick }: StartMenuLinkProps) {
     return (
         <button
-            className="w-full flex items-center gap-2 px-2 py-1 hover:bg-[#2F71CD] hover:text-white group transition-colors text-left"
+            className="w-full flex items-center gap-2 px-2 py-1 md:py-1.5 hover:bg-[#2F71CD] hover:text-white group transition-colors text-left"
             onClick={onClick}
         >
             <div className="relative w-6 h-6 shrink-0">

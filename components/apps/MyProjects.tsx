@@ -44,7 +44,7 @@ const projects: Project[] = [
         id: 'https://kundan-weather-app.netlify.app/weather-app',
         title: 'Weather App',
         description: 'Real-time Weather Updates',
-        longDescription: 'The weather application built using Next.js (version 14) and Tailwind CSS, along with Shadcn UI and Lucide React for UI components and icons. It fetches weather data from OpenWeatherMap API — providing users with current weather conditions, an hourly-forecast strip, and a 7-day forecast for any searched city worldwide. The app features geolocation support (so it can show weather for the user’s current location on startup), plus a toggle between metric and imperial units.',
+        longDescription: 'The weather application built using Next.js and Tailwind CSS, along with Shadcn UI and Lucide React for UI components and icons. It fetches weather data from OpenWeatherMap API — providing users with current weather conditions, an hourly-forecast strip, and a 7-day forecast for any searched city worldwide. The app features geolocation support, plus a toggle between metric and imperial units.',
         image: '/icons/weather-project.png',
         techStack: ['/icons/react-original.svg', '/icons/nextjs-original.svg', '/icons/shadcn.png', '/icons/tailwindcss-original.svg'],
         link: 'https://kundan-weather-app.netlify.app/',
@@ -56,7 +56,7 @@ const projects: Project[] = [
         description: 'Travel Package Booking Website',
         longDescription: 'A visually appealing and responsive travel booking showcase designed to highlight tour packages and destination experiences. Built using HTML, CSS, JavaScript, and PHP for contact form handling, the site presents travel offerings with high-quality imagery, smooth navigation, providing an engaging browsing experience for users exploring tour options or submitting inquiries for bookings.',
         image: '/icons/tour-project.png',
-        techStack: ['/icons/html.png', '/icons/css.png', '/icons/javascript.png', '/icons/php.png'],
+        techStack: ['/icons/HTML.png', '/icons/CSS.png', '/icons/javascript.png', '/icons/php.png'],
         link: 'https://spontaneous-travesseiro-b88e19.netlify.app/',
         color: 'from-green-600 to-green-900'
     }
@@ -69,7 +69,7 @@ interface MyProjectsProps {
 }
 
 export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjectsProps) {
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeMenu, setActiveMenu] = useState<'file' | 'view' | 'tools' | 'help' | null>(null);
     const [showBrowser, setShowBrowser] = useState(false);
@@ -227,7 +227,7 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
                     className={`flex items-center gap-1 px-2 hover:bg-white/50 border border-transparent hover:border-[#D4D0C8] rounded-sm active:border-gray-400 active:shadow-inner ${!isDarkMode ? 'bg-white/50 border-[#D4D0C8]' : ''}`}
                 >
                     <div className="relative w-6 h-6">
-                        <Image src="/icons/Theme.png" alt="Theme" fill className="object-contain" />
+                        <Image src="/icons/Dark.png" alt="Theme" fill className="object-contain" />
                     </div>
                     <span className="text-[11px]">Light/Dark</span>
                 </button>
@@ -295,7 +295,7 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
                                     <h1 className={`text-4xl md:text-5xl font-bold tracking-tight leading-tight transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                                         {currentProject.title}
                                     </h1>
-                                    <p className={`text-base md:text-lg leading-relaxed max-w-xl transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    <p className={`text-base md:text-lg leading-relaxed text-justify max-w-xl transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                                         {currentProject.longDescription}
                                     </p>
                                 </div>
@@ -314,10 +314,10 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
 
                                     <button
                                         onClick={handleGo}
-                                        className={`flex items-center gap-2 font-medium text-sm group transition-colors duration-300 ${isDarkMode ? 'text-[#E5E5E5] hover:text-white' : 'text-gray-700 hover:text-black'}`}
+                                        className={`flex items-center gap-2 font-medium text-xl group transition-colors duration-300 ${isDarkMode ? 'text-[#E5E5E5] hover:text-white' : 'text-gray-700 hover:text-black'}`}
                                     >
                                         Check Live Site
-                                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 </div>
 

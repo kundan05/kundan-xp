@@ -10,6 +10,7 @@ export interface WindowState {
   isMaximized?: boolean;
   initialWidth?: number;
   initialHeight?: number;
+  allowMobileMaximize?: boolean;
 }
 
 export interface DesktopIconProps {
