@@ -1,10 +1,11 @@
-# Windows XP Portfolio
+# Windows XP Portfolio 
 
 A nostalgic, fully interactive personal portfolio website built with **Next.js**, designed to replicate the iconic **Windows XP** desktop environment.
 
 <img width="1859" height="933" alt="image" src="https://github.com/user-attachments/assets/ecdba528-a4a3-4da5-bd5a-3affb2fdc26b" />
 
 
+## 🌟 🚀 Live ---  https://kundanxp.netlify.app/
 ## 🌟 Inspiration
 
 This project is heavily inspired by the amazing work of [Mitchivin](https://mitchivin.com/). It aims to capture the charm and functionality of the classic Windows XP interface while showcasing modern web development skills.
@@ -30,8 +31,6 @@ This project is heavily inspired by the amazing work of [Mitchivin](https://mitc
 2.  **Install dependencies**:
     ```bash
     npm install
-    # or
-    yarn install
     ```
 
 3.  **Run the development server**:
