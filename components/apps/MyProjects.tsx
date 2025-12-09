@@ -31,13 +31,13 @@ const projects: Project[] = [
         color: 'from-blue-600 to-blue-900'
     },
     {
-        id: 'https://notes-app-with-ai-summarization-1.onrender.com/',
+        id: 'https://notes-app-with-ai-summarization.vercel.app/',
         title: 'Notes-App with AI summarization',
         description: 'AI-Powered Note Taking',
         longDescription: 'This project is a modern web-based note-taking application that allows users to create, edit, view, and delete notes, with a built-in AI-powered summarization feature. By integrating Google’s Gemini API, the application can take long or unstructured notes and instantly generate concise summaries. The project uses a full-stack architecture powered by React and Vite on the frontend, offering a clean, minimal, glass-morphism design that is responsive across devices.',
         image: '/icons/notes-project.png',
         techStack: ['/icons/react-original.svg', '/icons/express-original.svg', '/icons/nodejs-original.svg', '/icons/MongoDB.svg'],
-        link: 'https://notes-app-with-ai-summarization-1.onrender.com/',
+        link: 'https://notes-app-with-ai-summarization.vercel.app/',
         color: 'from-purple-600 to-purple-900'
     },
     {
