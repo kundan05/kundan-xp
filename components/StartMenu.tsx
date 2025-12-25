@@ -29,7 +29,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
             {/* Click Outside Overlay */}
             <div className="fixed inset-0 z-[9997]" onClick={onClose} />
 
-            <div className="absolute bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-auto bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none" onClick={(e) => e.stopPropagation()}>
+            <div className="fixed bottom-[30px] md:bottom-[30px] left-0 w-[300px] max-w-[380px] h-auto bg-white rounded-t-lg shadow-[2px_-2px_10px_rgba(0,0,0,0.5)] flex flex-col z-[9998] font-tahoma select-none" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
                 <div className="h-[80px] bg-gradient-to-b from-[#156FEF] to-[#1056BF] flex items-center px-2 gap-3 border-t-2 border-[#388AFF] shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] rounded-t-lg relative">
                     {/* Header Highlight */}
@@ -120,7 +120,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
 
                             {/* All Programs Submenu */}
                             {showAllPrograms && (
-                                <div className="absolute left-[100%] bottom-[-11px] w-44 bg-white border border-[#555] shadow-[4px_4px_4px_rgba(0,0,0,0.5)] flex flex-col py-[2px] z-50 ml-[2px]">
+                                <div className="absolute left-[100%] bottom-[20px] w-44 bg-white border border-[#555] shadow-[4px_4px_4px_rgba(0,0,0,0.5)] flex flex-col py-[2px] z-50 ml-[2px]">
                                     <StartMenuItem icon="/icons/projects-custom.png" label="Projects" onClick={() => onItemClick('projects')} compact />
                                     <StartMenuItem icon="/icons/gamew.png" label="World of Warcraft" onClick={() => onItemClick('wow')} compact />
                                     <StartMenuItem icon="/icons/media-player.png" label="Media Player" onClick={() => onItemClick('media-player')} compact />

@@ -370,7 +370,7 @@ export default function Desktop() {
 
     return (
         <div
-            className="relative w-full h-screen overflow-hidden bg-xp-blue select-none bg-cover bg-center bg-[url('/wallpaper-mobile.jpg')] md:bg-[url('/wallpaper-custom.png')]"
+            className="relative w-full h-[100dvh] overflow-hidden bg-xp-blue select-none bg-cover bg-center bg-[url('/wallpaper-mobile.jpg')] md:bg-[url('/wallpaper-custom.png')]"
             onClick={() => setIsStartMenuOpen(false)}
         >
             {/* Desktop Icons */}
