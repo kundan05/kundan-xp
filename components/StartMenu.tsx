@@ -104,7 +104,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                                 onMouseEnter={() => setShowAllPrograms(true)}
                                 onClick={() => setShowAllPrograms(!showAllPrograms)}
                             >
-                                <span className="font-bold text-[11px] text-black group-hover:text-white font-tahoma">All Programs</span>
+                                <span className="font-bold text-[15px] text-black group-hover:text-white font-tahoma">All Programs</span>
                                 <div className="relative w-[18px] h-[18px] flex items-center justify-center">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-sm">
                                         <defs>

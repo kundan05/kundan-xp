@@ -26,7 +26,7 @@ export default function LoginScreen({ onLogin, onRestart, onShutdown }: LoginScr
             </div>
 
             {/* Main Content Area - Grid Background */}
-            <div className="flex-1 w-full relative flex items-center justify-center overflow-hidden">
+            <div className="flex-1 w-full relative flex items-center justify-center overflow-hidden pb-[60px] md:pb-0">
                 {/* Background Color */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#536AE4] to-[#3E55C8]"></div>
 
@@ -92,7 +92,7 @@ export default function LoginScreen({ onLogin, onRestart, onShutdown }: LoginScr
             </div>
 
             {/* Bottom Bar */}
-            <div className="h-[60px] md:h-[80px] w-full bg-[#003399] relative flex items-center justify-center md:justify-between px-4 md:px-12 z-20 shrink-0">
+            <div className="fixed bottom-0 left-0 md:relative h-[60px] md:h-[80px] w-full bg-[#003399] flex items-center justify-center md:justify-between px-4 md:px-12 z-50 md:z-20 shrink-0 shadow-[0_-2px_10px_rgba(0,0,0,0.2)] md:shadow-none">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#E57E31] to-transparent"></div>
                 {!isLoggingIn && (
                     <>
