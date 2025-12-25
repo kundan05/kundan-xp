@@ -22,13 +22,13 @@ export default function LoadingScreen() {
                 </div>
 
                 {/* Loading Bar */}
-                <div className="w-[250px] md:w-[350px] h-[18px] border-[2px] border-[#5A5A5A] rounded-[4px] p-[2px] relative overflow-hidden bg-black">
+                <div className="w-[220px] md:w-[280px] h-[20px] border-[2px] border-[#B2B2B2] rounded-[5px] p-[2px] relative overflow-hidden bg-black shadow-[0_0_0_1px_rgba(0,0,0,1)]">
                     <div
-                        className="absolute top-[1px] bottom-[1px] w-[100px] flex gap-[4px] animate-xp-loading"
+                        className="absolute top-[2px] bottom-[2px] w-[80px] flex gap-[3px] animate-xp-loading"
                     >
-                        <div className="flex-1 bg-gradient-to-b from-[#2D58B6] to-[#5A7EDC] rounded-[1px] shadow-[inset_0_0_2px_rgba(255,255,255,0.5)]"></div>
-                        <div className="flex-1 bg-gradient-to-b from-[#2D58B6] to-[#5A7EDC] rounded-[1px] shadow-[inset_0_0_2px_rgba(255,255,255,0.5)]"></div>
-                        <div className="flex-1 bg-gradient-to-b from-[#2D58B6] to-[#5A7EDC] rounded-[1px] shadow-[inset_0_0_2px_rgba(255,255,255,0.5)]"></div>
+                        <div className="flex-1 bg-gradient-to-b from-[#2653E3] via-[#4887F1] to-[#2653E3] rounded-[2px] shadow-[inset_0_0_1px_rgba(255,255,255,0.6)]"></div>
+                        <div className="flex-1 bg-gradient-to-b from-[#2653E3] via-[#4887F1] to-[#2653E3] rounded-[2px] shadow-[inset_0_0_1px_rgba(255,255,255,0.6)]"></div>
+                        <div className="flex-1 bg-gradient-to-b from-[#2653E3] via-[#4887F1] to-[#2653E3] rounded-[2px] shadow-[inset_0_0_1px_rgba(255,255,255,0.6)]"></div>
                     </div>
                 </div>
             </div>
