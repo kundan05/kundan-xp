@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { DesktopIconProps } from './types';
 import Image from 'next/image';
@@ -6,11 +8,9 @@ export default function DesktopIcon({ id, title, icon, onDoubleClick }: DesktopI
     const [isTouchDevice, setIsTouchDevice] = React.useState(false);
 
     React.useEffect(() => {
-        // Check if the device has a coarse pointer (touch)
         const checkTouch = () => {
             setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
         };
-
         checkTouch();
         window.addEventListener('resize', checkTouch);
         return () => window.removeEventListener('resize', checkTouch);
@@ -22,13 +22,24 @@ export default function DesktopIcon({ id, title, icon, onDoubleClick }: DesktopI
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onDoubleClick(id);
+        }
+    };
+
     return (
         <div
-            className="flex flex-col items-center w-28 p-2 m-2 cursor-pointer group hover:bg-[#0B61FF]/20 hover:border hover:border-[#0B61FF]/40 rounded-[4px] transition-all"
+            className="flex flex-col items-center w-28 p-2 m-2 cursor-pointer group hover:bg-[#0B61FF]/20 hover:border hover:border-[#0B61FF]/40 rounded-[4px] transition-all duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             onDoubleClick={() => onDoubleClick(id)}
             onClick={handleClick}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="button"
+            aria-label={`Open ${title}`}
         >
-            <div className="w-16 h-16 mb-1 relative flex items-center justify-center drop-shadow-md">
+            <div className="w-16 h-16 mb-1 relative flex items-center justify-center drop-shadow-md group-active:scale-95 transition-transform duration-100">
                 <Image
                     src={icon || '/icons/folder.png'}
                     alt={title}
@@ -43,4 +54,3 @@ export default function DesktopIcon({ id, title, icon, onDoubleClick }: DesktopI
         </div>
     );
 }
-

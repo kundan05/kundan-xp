@@ -20,8 +20,8 @@ export default function Resume({ onClose, onMinimize, onMaximize, onOpenApp }: R
 
     const handleSave = () => {
         const link = document.createElement('a');
-        link.href = '/KundanGowda_Resume.pdf';
-        link.download = 'KundanGowda_Resume.pdf';
+        link.href = '/Kundan_Gowda_Resume_.pdf';
+        link.download = 'Kundan_Gowda_Resume_.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -31,7 +31,7 @@ export default function Resume({ onClose, onMinimize, onMaximize, onOpenApp }: R
         // Create a hidden iframe to print the PDF
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
-        iframe.src = '/KundanGowda_Resume.pdf';
+        iframe.src = '/Kundan_Gowda_Resume_.pdf';
         document.body.appendChild(iframe);
 
         iframe.onload = () => {
@@ -219,7 +219,7 @@ export default function Resume({ onClose, onMinimize, onMaximize, onOpenApp }: R
 
                     <div className="relative w-full max-w-[800px] aspect-[800/1132] pointer-events-none bg-transparent">
                         <Image
-                            src="/icons/resume-image.png"
+                            src="/resume_image.png"
                             alt="Resume"
                             fill
                             className="object-contain"

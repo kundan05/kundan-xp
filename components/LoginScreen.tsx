@@ -109,7 +109,7 @@ export default function LoginScreen({ onLogin, onRestart, onShutdown }: LoginScr
                         </div>
 
                         <div className="hidden md:block text-white/100 text-sm max-w-md text-right leading-tight font-medium" style={{ fontFamily: 'Tahoma, sans-serif' }}>
-                            After you log on, the system's yours to explore.<br />
+                            After you log on, the system&apos;s yours to explore.<br />
                             Every detail has been designed with a purpose.
                         </div>
 

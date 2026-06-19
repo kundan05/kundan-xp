@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Taskbar from './Taskbar';
 import Window from './Window';
 import DesktopIcon from './DesktopIcon';
@@ -24,19 +23,24 @@ import Notification from './Notification';
 import LoadingScreen from './LoadingScreen';
 import OpenLinkDialog from './OpenLinkDialog';
 import MobileRestrictionDialog from './MobileRestrictionDialog';
-
+import DesktopParticles from './DesktopParticles';
 
 type AppState = 'booting' | 'login' | 'desktop' | 'shutdown_dialog' | 'powered_off';
 
 export default function Desktop() {
-    const [windows, setWindows] = useState<WindowState[]>([
+    const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
+    const [maxZIndex, setMaxZIndex] = useState(10);
+    const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+    const [appState, setAppState] = useState<AppState>('booting');
+
+    const [windows, setWindows] = useState<WindowState[]>(() => [
         {
             id: 'about',
             title: 'About Me',
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <AboutMe />,
+            content: null,
             icon: '/icons/about-custom.png',
             hasCustomContent: true,
             initialWidth: 800,
@@ -48,11 +52,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <Resume
-                onClose={() => handleCloseWindow('resume')}
-                onMinimize={() => handleMinimizeWindow('resume')}
-                onMaximize={() => handleMaximizeWindow('resume')}
-            />,
+            content: null,
             icon: '/icons/resume-custom.png',
             hasCustomContent: true,
             initialWidth: 900,
@@ -64,11 +64,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <MyProjects
-                onClose={() => handleCloseWindow('projects')}
-                onMinimize={() => handleMinimizeWindow('projects')}
-                onMaximize={() => handleMaximizeWindow('projects')}
-            />,
+            content: null,
             icon: '/icons/projects-custom.png',
             hasCustomContent: true,
             initialWidth: 1000,
@@ -80,7 +76,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <Contact />,
+            content: null,
             icon: '/icons/outlook.png',
             hasCustomContent: true
         },
@@ -90,11 +86,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <MediaPlayer
-                onClose={() => handleCloseWindow('media-player')}
-                onMinimize={() => handleMinimizeWindow('media-player')}
-                onMaximize={() => handleMaximizeWindow('media-player')}
-            />,
+            content: null,
             icon: '/icons/media-player.png',
             initialWidth: 800,
             initialHeight: 600,
@@ -106,7 +98,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <Paint />,
+            content: null,
             icon: '/icons/paint.png',
             hasCustomContent: true
         },
@@ -116,11 +108,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <ImageViewer
-                onClose={() => handleCloseWindow('image-viewer')}
-                onMinimize={() => handleMinimizeWindow('image-viewer')}
-                onMaximize={() => handleMaximizeWindow('image-viewer')}
-            />,
+            content: null,
             icon: '/icons/image-viewer.png',
             hasCustomContent: true
         },
@@ -130,7 +118,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <MusicPlayer />,
+            content: null,
             icon: '/icons/music.png',
             hasCustomContent: true,
             allowMobileMaximize: false
@@ -141,7 +129,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <CommandPrompt onClose={() => handleCloseWindow('cmd')} />,
+            content: null,
             icon: '/icons/cmd.png',
             hasCustomContent: true
         },
@@ -151,7 +139,7 @@ export default function Desktop() {
             isOpen: false,
             isMinimized: false,
             zIndex: 1,
-            content: <WorldOfWarcraft onClose={() => handleCloseWindow('wow')} />,
+            content: null,
             icon: '/icons/gamew.png',
             initialWidth: 800,
             initialHeight: 600,
@@ -159,16 +147,44 @@ export default function Desktop() {
         }
     ]);
 
-    const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
+    const handleCloseWindow = useCallback((id: string) => {
+        setWindows(prev => prev.map(w => {
+            if (w.id === id) {
+                return { ...w, isOpen: false };
+            }
+            return w;
+        }));
+        setActiveWindowId(prev => prev === id ? null : prev);
+    }, []);
+
+    const handleMinimizeWindow = useCallback((id: string) => {
+        setWindows(prev => prev.map(w => {
+            if (w.id === id) {
+                return { ...w, isMinimized: true };
+            }
+            return w;
+        }));
+        setActiveWindowId(prev => prev === id ? null : prev);
+    }, []);
+
+    const handleMaximizeWindow = useCallback((id: string) => {
+        setWindows(prev => prev.map(w => {
+            if (w.id === id) {
+                return { ...w, isMaximized: !w.isMaximized };
+            }
+            return w;
+        }));
+        setActiveWindowId(id);
+        setMaxZIndex(prev => prev + 1);
+    }, []);
+
     const [showShutdownDialog, setShowShutdownDialog] = useState(false);
     const [showMobileRestriction, setShowMobileRestriction] = useState(false);
     const [showLogOffDialog, setShowLogOffDialog] = useState(false);
-    const [maxZIndex, setMaxZIndex] = useState(10);
-    const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
-    const [appState, setAppState] = useState<AppState>('booting');
 
     const [showNotification, setShowNotification] = useState(false);
     const [isCRTEnabled, setIsCRTEnabled] = useState(false);
+    const [soundEnabled, setSoundEnabled] = useState(true);
     const [linkDialogState, setLinkDialogState] = useState<{ isOpen: boolean; icon: string; title: string; url: string }>({
         isOpen: false,
         icon: '',
@@ -176,20 +192,25 @@ export default function Desktop() {
         url: ''
     });
 
-    const handleOpenLink = (icon: string, title: string, url: string) => {
+    const handleOpenLink = useCallback((icon: string, title: string, url: string) => {
         setLinkDialogState({ isOpen: true, icon, title, url });
-    };
+    }, []);
 
-    const handleConfirmLink = () => {
+    const handleConfirmLink = useCallback(() => {
         if (linkDialogState.url) {
             window.open(linkDialogState.url, '_blank');
         }
         setLinkDialogState(prev => ({ ...prev, isOpen: false }));
-    };
+    }, [linkDialogState.url]);
 
-    const toggleCRT = () => setIsCRTEnabled(!isCRTEnabled);
+    const handleCancelLink = useCallback(() => {
+        setLinkDialogState(prev => ({ ...prev, isOpen: false }));
+    }, []);
 
-    const toggleFullscreen = () => {
+    const toggleCRT = useCallback(() => setIsCRTEnabled(v => !v), []);
+    const toggleSound = useCallback(() => setSoundEnabled(v => !v), []);
+
+    const toggleFullscreen = useCallback(() => {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen();
         } else {
@@ -197,38 +218,37 @@ export default function Desktop() {
                 document.exitFullscreen();
             }
         }
-    };
+    }, []);
 
     // Boot sequence
     useEffect(() => {
         if (appState === 'booting') {
             const timer = setTimeout(() => {
                 setAppState('login');
-            }, 3000); // 3 seconds boot time
+            }, 3000);
             return () => clearTimeout(timer);
         }
     }, [appState]);
 
     const startupAudioRef = React.useRef<HTMLAudioElement>(null);
 
-    const handleStartupSoundEnded = () => {
+    const handleStartupSoundEnded = useCallback(() => {
         setShowNotification(true);
-        const audio = new Audio('/icons/windows-xp-balloon-sound.mp3');
-        audio.play().catch(e => console.error("Notification audio play failed", e));
-    };
+        if (soundEnabled) {
+            const audio = new Audio('/icons/windows-xp-balloon-sound.mp3');
+            audio.play().catch(() => {});
+        }
+    }, [soundEnabled]);
 
     useEffect(() => {
-        if (appState === 'desktop') {
-            startupAudioRef.current?.play().catch(e => {
-                console.error("Audio play failed", e);
-                // Fallback if audio fails to play
+        if (appState === 'desktop' && soundEnabled) {
+            startupAudioRef.current?.play().catch(() => {
                 handleStartupSoundEnded();
             });
         }
-    }, [appState]);
+    }, [appState, soundEnabled, handleStartupSoundEnded]);
 
-    const handleOpenWindow = (id: string) => {
-        // Mobile restriction for Media Player
+    const handleOpenWindow = useCallback((id: string) => {
         if (id === 'media-player' && window.innerWidth < 768) {
             setShowMobileRestriction(true);
             setIsStartMenuOpen(false);
@@ -244,44 +264,9 @@ export default function Desktop() {
         setActiveWindowId(id);
         setMaxZIndex(prev => prev + 1);
         setIsStartMenuOpen(false);
-    };
+    }, [maxZIndex]);
 
-    const handleCloseWindow = (id: string) => {
-        setWindows(prev => prev.map(w => {
-            if (w.id === id) {
-                return { ...w, isOpen: false };
-            }
-            return w;
-        }));
-        if (activeWindowId === id) {
-            setActiveWindowId(null);
-        }
-    };
-
-    const handleMinimizeWindow = (id: string) => {
-        setWindows(prev => prev.map(w => {
-            if (w.id === id) {
-                return { ...w, isMinimized: true };
-            }
-            return w;
-        }));
-        if (activeWindowId === id) {
-            setActiveWindowId(null);
-        }
-    };
-
-    const handleMaximizeWindow = (id: string) => {
-        setWindows(prev => prev.map(w => {
-            if (w.id === id) {
-                return { ...w, isMaximized: !w.isMaximized };
-            }
-            return w;
-        }));
-        setActiveWindowId(id);
-        setMaxZIndex(prev => prev + 1);
-    };
-
-    const handleFocusWindow = (id: string) => {
+    const handleFocusWindow = useCallback((id: string) => {
         setWindows(prev => prev.map(w => {
             if (w.id === id) {
                 return { ...w, zIndex: maxZIndex + 1, isMinimized: false };
@@ -290,67 +275,135 @@ export default function Desktop() {
         }));
         setActiveWindowId(id);
         setMaxZIndex(prev => prev + 1);
-    };
+    }, [maxZIndex]);
 
-    const handleToggleWindow = (id: string) => {
+    const handleToggleWindow = useCallback((id: string) => {
         const win = windows.find(w => w.id === id);
         if (win?.isMinimized || activeWindowId !== id) {
             handleFocusWindow(id);
         } else {
             handleMinimizeWindow(id);
         }
-    };
+    }, [windows, activeWindowId, handleFocusWindow, handleMinimizeWindow]);
 
-    const handleLogin = () => {
+    const handleLogin = useCallback(() => {
         setAppState('desktop');
-    };
+    }, []);
 
-    const handleLogOff = () => {
+    const handleLogOff = useCallback(() => {
         setIsStartMenuOpen(false);
         setShowLogOffDialog(true);
-    };
+    }, []);
 
-    const confirmLogOff = () => {
-        // Play logoff sound
-        const audio = new Audio('/icons/windows-xp-logoff.mp3');
-        audio.play().catch(e => console.error("Audio play failed", e));
-
-        // Close all windows and reset state
+    const confirmLogOff = useCallback(() => {
+        if (soundEnabled) {
+            const audio = new Audio('/icons/windows-xp-logoff.mp3');
+            audio.play().catch(() => {});
+        }
         setWindows(windows.map(w => ({ ...w, isOpen: false, isMinimized: false })));
         setShowLogOffDialog(false);
         setAppState('login');
-    };
+    }, [soundEnabled, windows]);
 
-    const confirmSwitchUser = () => {
-        // Restart behavior: close windows and go to booting screen
+    const confirmSwitchUser = useCallback(() => {
         setWindows(prev => prev.map(w => ({ ...w, isOpen: false, isMaximized: false })));
         setShowLogOffDialog(false);
         setAppState('booting');
-    };
+    }, []);
 
-    const handleTurnOffRequest = () => {
+    const handleTurnOffRequest = useCallback(() => {
         setShowShutdownDialog(true);
         setIsStartMenuOpen(false);
-    };
+    }, []);
 
-    const handleCancelShutdown = () => {
+    const handleCancelShutdown = useCallback(() => {
         setShowShutdownDialog(false);
-    };
+    }, []);
 
-    const handleRestart = () => {
+    const handleRestart = useCallback(() => {
         setAppState('booting');
         setWindows(prev => prev.map(w => ({ ...w, isOpen: false, isMaximized: false })));
         setShowShutdownDialog(false);
-    };
+    }, []);
 
-    const handleShutdown = () => {
-        // Play shutdown sound
-        const audio = new Audio('/icons/windows-shutdown_lWRhnkD.mp3');
-        audio.play().catch(e => console.error("Audio play failed", e));
-
+    const handleShutdown = useCallback(() => {
+        if (soundEnabled) {
+            const audio = new Audio('/icons/windows-shutdown_lWRhnkD.mp3');
+            audio.play().catch(() => {});
+        }
         setAppState('powered_off');
         setShowShutdownDialog(false);
-    };
+    }, [soundEnabled]);
+
+    const openWindows = useMemo(() => windows.filter(w => w.isOpen), [windows]);
+    const visibleWindows = useMemo(() => openWindows.filter(w => !w.isMinimized), [openWindows]);
+
+    function renderWindowContent(window: WindowState) {
+        switch (window.id) {
+            case 'contact':
+                return (
+                    <Contact
+                        onClose={() => handleCloseWindow('contact')}
+                        onMinimize={() => handleMinimizeWindow('contact')}
+                        onMaximize={() => handleMaximizeWindow('contact')}
+                        onOpenLink={handleOpenLink}
+                    />
+                );
+            case 'about':
+                return (
+                    <AboutMe
+                        onClose={() => handleCloseWindow('about')}
+                        onMinimize={() => handleMinimizeWindow('about')}
+                        onMaximize={() => handleMaximizeWindow('about')}
+                        onOpenApp={handleOpenWindow}
+                        onOpenLink={handleOpenLink}
+                    />
+                );
+            case 'resume':
+                return (
+                    <Resume
+                        onClose={() => handleCloseWindow('resume')}
+                        onMinimize={() => handleMinimizeWindow('resume')}
+                        onMaximize={() => handleMaximizeWindow('resume')}
+                        onOpenApp={handleOpenWindow}
+                    />
+                );
+            case 'media-player':
+                return (
+                    <MediaPlayer
+                        onClose={() => handleCloseWindow('media-player')}
+                        onMinimize={() => handleMinimizeWindow('media-player')}
+                        onMaximize={() => handleMaximizeWindow('media-player')}
+                    />
+                );
+            case 'image-viewer':
+                return (
+                    <ImageViewer
+                        onClose={() => handleCloseWindow('image-viewer')}
+                        onMinimize={() => handleMinimizeWindow('image-viewer')}
+                        onMaximize={() => handleMaximizeWindow('image-viewer')}
+                    />
+                );
+            case 'cmd':
+                return <CommandPrompt onClose={() => handleCloseWindow('cmd')} />;
+            case 'wow':
+                return <WorldOfWarcraft onClose={() => handleCloseWindow('wow')} />;
+            case 'projects':
+                return (
+                    <MyProjects
+                        onClose={() => handleCloseWindow('projects')}
+                        onMinimize={() => handleMinimizeWindow('projects')}
+                        onMaximize={() => handleMaximizeWindow('projects')}
+                    />
+                );
+            case 'paint':
+                return <Paint />;
+            case 'music-player':
+                return <MusicPlayer />;
+            default:
+                return null;
+        }
+    }
 
     if (appState === 'booting') {
         return <LoadingScreen />;
@@ -373,9 +426,9 @@ export default function Desktop() {
             className="relative w-full h-[100dvh] overflow-hidden bg-xp-blue select-none bg-cover bg-center bg-[url('/wallpaper-mobile.jpg')] md:bg-[url('/wallpaper-custom.png')]"
             onClick={() => setIsStartMenuOpen(false)}
         >
-            {/* Desktop Icons */}
-            {/* Desktop Icons */}
-            <div className="absolute top-0 left-0 bottom-8 right-0 flex flex-col flex-wrap content-start p-2 gap-2 z-0 overflow-hidden pointer-events-none">
+            <DesktopParticles />
+
+            <div className="absolute top-0 left-0 bottom-8 right-0 flex flex-col flex-wrap content-start p-3 gap-1 z-0 overflow-hidden pointer-events-none">
                 <div className="pointer-events-auto">
                     <DesktopIcon id="about" icon="/icons/about-custom.png" title="About Me" onDoubleClick={() => handleOpenWindow('about')} />
                 </div>
@@ -390,49 +443,27 @@ export default function Desktop() {
                 </div>
             </div>
 
-            {/* Windows */}
-            {windows.map(window => (
-                window.isOpen && !window.isMinimized && (
-                    <Window
-                        key={window.id}
-                        {...window}
-                        isActive={activeWindowId === window.id}
-                        isMaximized={window.isMaximized}
-                        onClose={() => handleCloseWindow(window.id)}
-                        onMinimize={() => handleMinimizeWindow(window.id)}
-                        onMaximize={() => handleMaximizeWindow(window.id)}
-                        onFocus={() => handleFocusWindow(window.id)}
-                    >
-                        {window.id === 'contact' ? (
-                            <Contact
-                                onClose={() => handleCloseWindow('contact')}
-                                onMinimize={() => handleMinimizeWindow('contact')}
-                                onMaximize={() => handleMaximizeWindow('contact')}
-                                onOpenLink={handleOpenLink}
-                            />
-                        ) : window.id === 'about' ? (
-                            <AboutMe
-                                onClose={() => handleCloseWindow('about')}
-                                onMinimize={() => handleMinimizeWindow('about')}
-                                onMaximize={() => handleMaximizeWindow('about')}
-                                onOpenApp={handleOpenWindow}
-                                onOpenLink={handleOpenLink}
-                            />
-                        ) : window.id === 'resume' ? (
-                            <Resume
-                                onClose={() => handleCloseWindow('resume')}
-                                onMinimize={() => handleMinimizeWindow('resume')}
-                                onMaximize={() => handleMaximizeWindow('resume')}
-                                onOpenApp={handleOpenWindow}
-                            />
-                        ) : (
-                            window.content
-                        )}
-                    </Window>
-                )
+            {visibleWindows.map(window => (
+                <Window
+                    key={window.id}
+                    title={window.title}
+                    icon={window.icon}
+                    isActive={activeWindowId === window.id}
+                    isMaximized={window.isMaximized}
+                    zIndex={window.zIndex}
+                    initialWidth={window.initialWidth}
+                    initialHeight={window.initialHeight}
+                    hasCustomContent={window.hasCustomContent}
+                    allowMobileMaximize={window.allowMobileMaximize}
+                    onClose={() => handleCloseWindow(window.id)}
+                    onMinimize={() => handleMinimizeWindow(window.id)}
+                    onMaximize={() => handleMaximizeWindow(window.id)}
+                    onFocus={() => handleFocusWindow(window.id)}
+                >
+                    {renderWindowContent(window)}
+                </Window>
             ))}
 
-            {/* Start Menu */}
             <div onClick={(e) => e.stopPropagation()}>
                 <StartMenu
                     isOpen={isStartMenuOpen}
@@ -444,9 +475,8 @@ export default function Desktop() {
                 />
             </div>
 
-            {/* Taskbar */}
             <Taskbar
-                windows={windows}
+                windows={openWindows}
                 activeWindowId={activeWindowId}
                 onToggleWindow={handleToggleWindow}
                 onToggleStart={() => setIsStartMenuOpen(!isStartMenuOpen)}
@@ -454,9 +484,10 @@ export default function Desktop() {
                 onToggleCRT={toggleCRT}
                 onToggleFullscreen={toggleFullscreen}
                 onToggleNotification={() => setShowNotification(!showNotification)}
+                soundEnabled={soundEnabled}
+                onToggleSound={toggleSound}
             />
 
-            {/* CRT Overlay */}
             {isCRTEnabled && (
                 <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none" />
@@ -464,7 +495,6 @@ export default function Desktop() {
                 </div>
             )}
 
-            {/* Shutdown Dialog */}
             {showShutdownDialog && (
                 <ShutdownDialog
                     onCancel={handleCancelShutdown}
@@ -481,28 +511,24 @@ export default function Desktop() {
                 />
             )}
 
-            {/* Open Link Dialog */}
             <OpenLinkDialog
                 isOpen={linkDialogState.isOpen}
                 icon={linkDialogState.icon}
                 title={linkDialogState.title}
                 url={linkDialogState.url}
                 onConfirm={handleConfirmLink}
-                onCancel={() => setLinkDialogState(prev => ({ ...prev, isOpen: false }))}
+                onCancel={handleCancelLink}
             />
 
-            {/* Mobile Restriction Dialog */}
             <MobileRestrictionDialog
                 isOpen={showMobileRestriction}
                 onClose={() => setShowMobileRestriction(false)}
             />
 
-            {/* Notification */}
             {showNotification && (
                 <Notification onClose={() => setShowNotification(false)} onLinkClick={handleOpenWindow} />
             )}
 
-            {/* Startup Sound */}
             <audio ref={startupAudioRef} src="/icons/windows-xp-startup.mp3" onEnded={handleStartupSoundEnded} />
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+
 
 interface OpenLinkDialogProps {
     isOpen: boolean;
@@ -11,7 +11,7 @@ interface OpenLinkDialogProps {
     onCancel: () => void;
 }
 
-export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, onCancel }: OpenLinkDialogProps) {
+export default function OpenLinkDialog({ isOpen, icon, title, onConfirm, onCancel }: OpenLinkDialogProps) {
     if (!isOpen) return null;
 
     return (
@@ -53,7 +53,7 @@ export default function OpenLinkDialog({ isOpen, icon, title, url, onConfirm, on
                         <div className="text-center space-y-1">
                             <h3 className="font-bold text-lg text-black drop-shadow-sm">Open Link</h3>
                             <p className="text-[11px] text-black px-2">
-                                Are you sure you want to open "{title}"?
+                                Are you sure you want to open &ldquo;{title}&rdquo;?
                             </p>
                         </div>
                     </div>

@@ -31,24 +31,34 @@ const projects: Project[] = [
         color: 'from-blue-600 to-blue-900'
     },
     {
-        id: 'https://notes-app-with-ai-summarization.vercel.app/',
-        title: 'Notes-App with AI summarization',
-        description: 'AI-Powered Note Taking',
-        longDescription: 'This project is a modern web-based note-taking application that allows users to create, edit, view, and delete notes, with a built-in AI-powered summarization feature. By integrating Google’s Gemini API, the application can take long or unstructured notes and instantly generate concise summaries. The project uses a full-stack architecture powered by React and Vite on the frontend, offering a clean, minimal, glass-morphism design that is responsive across devices.',
-        image: '/icons/notes-project.png',
-        techStack: ['/icons/react-original.svg', '/icons/express-original.svg', '/icons/nodejs-original.svg', '/icons/MongoDB.svg'],
-        link: 'https://notes-app-with-ai-summarization.vercel.app/',
-        color: 'from-purple-600 to-purple-900'
+        id: 'https://github.com/kundan05/layoff-terminal',
+        title: 'Layoff Terminal',
+        description: 'Global AI-Era Layoff Tracker',
+        longDescription: 'A Bloomberg-style real-time terminal that tracks global tech layoffs since the AI era began. It features an interactive 3D globe built with Three.js, a live data scraper pulling from Airtable, WARN filings, and TechCrunch, and a comprehensive analytics dashboard. The app bundles static JSON data for seamless Netlify deployment and updates automatically via a backend scraper that runs daily to geocode and ingest worldwide layoff events.',
+        image: '/icons/layoff-project.png',
+        techStack: ['/icons/javascript.png', '/icons/nodejs-original.svg', '/icons/express-original.svg', '/icons/HTML.png'],
+        link: 'https://github.com/kundan05/layoff-terminal',
+        color: 'from-emerald-600 to-emerald-900'
     },
     {
-        id: 'https://kundan-weather-app.netlify.app/weather-app',
-        title: 'Weather App',
-        description: 'Real-time Weather Updates',
-        longDescription: 'The weather application built using Next.js and Tailwind CSS, along with Shadcn UI and Lucide React for UI components and icons. It fetches weather data from OpenWeatherMap API — providing users with current weather conditions, an hourly-forecast strip, and a 7-day forecast for any searched city worldwide. The app features geolocation support, plus a toggle between metric and imperial units.',
-        image: '/icons/weather-project.png',
-        techStack: ['/icons/react-original.svg', '/icons/nextjs-original.svg', '/icons/shadcn.png', '/icons/tailwindcss-original.svg'],
-        link: 'https://kundan-weather-app.netlify.app/',
-        color: 'from-orange-600 to-orange-900'
+        id: 'https://github.com/kundan05/DevInsight',
+        title: 'DevInsight',
+        description: 'Real-Time Developer Collaboration',
+        longDescription: 'DevInsight is a real-time developer collaboration platform designed for code sharing, pair programming, and skill assessment. It features a live collaborative editor powered by Monaco Editor and Socket.io, code snippet management with syntax highlighting, coding challenges, and a high-performance backend using Redis for caching and session management. Built with TypeScript throughout for type-safe, scalable architecture.',
+        image: '/icons/devinsight-project.png',
+        techStack: ['/icons/typescript-original.svg', '/icons/react-original.svg', '/icons/nodejs-original.svg', '/icons/express-original.svg'],
+        link: 'https://github.com/kundan05/DevInsight',
+        color: 'from-violet-600 to-violet-900'
+    },
+    {
+        id: 'https://github.com/kundan05/spring-commerce-platform',
+        title: 'Spring Commerce',
+        description: 'Full-Stack E-Commerce Platform',
+        longDescription: 'Spring Commerce is a production-grade, full-stack e-commerce platform built with Spring Boot and React. It features JWT-based authentication, a complete product catalog with search and filtering, shopping cart management, Stripe-powered secure checkout, and an admin dashboard for inventory and order management. The backend uses MySQL with JPA/Hibernate for persistence, with a clean RESTful API consumed by the React frontend.',
+        image: '/icons/spring-commerce-project.png',
+        techStack: ['/icons/java-original.svg', '/icons/react-original.svg', '/icons/typescript-original.svg', '/icons/MongoDB.svg'],
+        link: 'https://github.com/kundan05/spring-commerce-platform',
+        color: 'from-teal-600 to-teal-900'
     },
     {
         id: 'https://spontaneous-travesseiro-b88e19.netlify.app/',
