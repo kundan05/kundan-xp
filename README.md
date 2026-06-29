@@ -2,8 +2,7 @@
 
 A nostalgic, fully interactive personal portfolio website built with **Next.js**, designed to replicate the iconic **Windows XP** desktop environment.
 
-<img width="1859" height="933" alt="image" src="<img width="1851" height="932" alt="image" src="https://github.com/user-attachments/assets/f9a0d8ae-7efc-4b83-a577-79a0bbb87676" />
-" />
+"<img width="1851" height="932" alt="image" src="https://github.com/user-attachments/assets/f9a0d8ae-7efc-4b83-a577-79a0bbb87676" />"
 
 
 ## 🌟 🚀 Live ---  https://kundanxp.netlify.app/
