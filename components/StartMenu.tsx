@@ -129,7 +129,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                                     <StartMenuItem icon="/icons/paint.png" label="Paint" onClick={() => onItemClick('paint')} compact />
                                     <StartMenuItem icon="/icons/cmd.png" label="Command Prompt" onClick={() => onItemClick('cmd')} compact />
                                     <div className="h-[1px] bg-gray-200 my-1 mx-2" />
-                                    <StartMenuItem icon="/icons/instagram.png" label="Instagram" onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/kundan_gowda_/')} compact />
+                                    <StartMenuItem icon="/icons/instagram.png" label="Instagram" onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/a_vo1d_/')} compact />
                                     <StartMenuItem icon="/icons/github.png" label="GitHub" onClick={() => handleLinkClick('/icons/github.png', 'GitHub', 'https://github.com/kundan05')} compact />
                                     <StartMenuItem icon="/icons/linkedin.svg" label="LinkedIn" onClick={() => handleLinkClick('/icons/linkedin.svg', 'LinkedIn', 'https://www.linkedin.com/in/kundangowda-n-363a50229/')} compact />
                                 </div>
@@ -159,7 +159,7 @@ export default function StartMenu({ isOpen, onClose, onItemClick, onLogOff, onTu
                                 icon="/icons/instagram.png"
                                 label="Instagram"
                                 bold
-                                onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/kundan_gowda_/')}
+                                onClick={() => handleLinkClick('/icons/instagram.png', 'Instagram', 'https://www.instagram.com/a_vo1d_/')}
                             />
 
                             <div className="h-[1px] bg-gradient-to-r from-transparent via-[#A7C6E8] to-transparent my-1 mx-2" />

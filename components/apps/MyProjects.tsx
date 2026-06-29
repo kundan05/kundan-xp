@@ -21,23 +21,13 @@ interface Project {
 
 const projects: Project[] = [
     {
-        id: 'https://ai-resume-analyzer-0x4h.onrender.com/',
-        title: 'AI Resume Analyzer',
-        description: 'Resume Analysis Tool',
-        longDescription: 'AI Resume Analyzer is a modern, intelligent application designed to help job seekers optimize their resumes. By leveraging AI, it analyzes resumes against specific job descriptions, providing an ATS (Applicant Tracking System) score and actionable feedback to improve chances of hiring. Built with the latest web technologies, it offers a seamless, serverless experience for managing resumes and getting instant insights.',
-        image: '/icons/resume-project.png', // Using existing placeholder
-        techStack: ['/icons/react-original.svg', '/icons/typescript-original.svg', '/icons/tailwindcss-original.svg', '/icons/puterjs.png'],
-        link: 'https://ai-resume-analyzer-0x4h.onrender.com/',
-        color: 'from-blue-600 to-blue-900'
-    },
-    {
-        id: 'https://github.com/kundan05/layoff-terminal',
+        id: 'https://layoff-terminal.netlify.app/',
         title: 'Layoff Terminal',
         description: 'Global AI-Era Layoff Tracker',
         longDescription: 'A Bloomberg-style real-time terminal that tracks global tech layoffs since the AI era began. It features an interactive 3D globe built with Three.js, a live data scraper pulling from Airtable, WARN filings, and TechCrunch, and a comprehensive analytics dashboard. The app bundles static JSON data for seamless Netlify deployment and updates automatically via a backend scraper that runs daily to geocode and ingest worldwide layoff events.',
         image: '/icons/layoff-project.png',
         techStack: ['/icons/javascript.png', '/icons/nodejs-original.svg', '/icons/express-original.svg', '/icons/HTML.png'],
-        link: 'https://github.com/kundan05/layoff-terminal',
+        link: 'https://layoff-terminal.netlify.app/',
         color: 'from-emerald-600 to-emerald-900'
     },
     {
@@ -59,6 +49,16 @@ const projects: Project[] = [
         techStack: ['/icons/java-original.svg', '/icons/react-original.svg', '/icons/typescript-original.svg', '/icons/MongoDB.svg'],
         link: 'https://github.com/kundan05/spring-commerce-platform',
         color: 'from-teal-600 to-teal-900'
+    },
+    {
+        id: 'https://ai-resume-analyzer-0x4h.onrender.com/',
+        title: 'AI Resume Analyzer',
+        description: 'Resume Analysis Tool',
+        longDescription: 'AI Resume Analyzer is a modern, intelligent application designed to help job seekers optimize their resumes. By leveraging AI, it analyzes resumes against specific job descriptions, providing an ATS (Applicant Tracking System) score and actionable feedback to improve chances of hiring. Built with the latest web technologies, it offers a seamless, serverless experience for managing resumes and getting instant insights.',
+        image: '/icons/resume-project.png',
+        techStack: ['/icons/react-original.svg', '/icons/typescript-original.svg', '/icons/tailwindcss-original.svg', '/icons/puterjs.png'],
+        link: 'https://ai-resume-analyzer-0x4h.onrender.com/',
+        color: 'from-blue-600 to-blue-900'
     },
     {
         id: 'https://spontaneous-travesseiro-b88e19.netlify.app/',
@@ -126,6 +126,11 @@ export default function MyProjects({ onClose, onMinimize, onMaximize }: MyProjec
     };
 
     const handleGo = () => {
+        // GitHub blocks iframe embedding — open in a new tab instead
+        if (currentProject.link.includes('github.com')) {
+            window.open(currentProject.link, '_blank', 'noopener,noreferrer');
+            return;
+        }
         setShowBrowser(true);
         setIsLoading(true);
     };

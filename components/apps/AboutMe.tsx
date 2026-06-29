@@ -277,7 +277,7 @@ export default function AboutMe({ onClose, onMinimize, onMaximize, onOpenApp, on
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-white mb-1 drop-shadow-md">Fidelity Investments</h3>
-                                    <p className="text-white text-sm mb-4 font-medium drop-shadow-sm">SDE Apprentice -- Feb 2025 - Present</p>
+                                    <p className="text-white text-sm mb-4 font-medium drop-shadow-sm">SDE Apprentice -- Feb 2025 - Feb 2026</p>
                                     <p className="text-[13px] text-white leading-relaxed font-sans drop-shadow-md font-medium">I’ve spent my time at Fidelity working across different parts of the stack, building real products, improving how they run, and helping teams ship with more confidence. I enjoy understanding how things behave in production, making systems smoother, and keeping things reliable for the people who use them. I like solving problems end-to-end, from creating features to testing, monitoring, and making sure everything works when it actually matters.</p>
                                 </div>
                             </div>
